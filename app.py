@@ -18,6 +18,10 @@ def mood():
 @app.route("/login")
 def login():
     return render_template("login.html", title = "Login")
+
+@app.route("/register")
+def register():
+    return render_template("register.html", title = "Welcome!")
     
 if __name__ == "__main__":
     #app.run() # when not debugging
