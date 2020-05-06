@@ -24,9 +24,10 @@ venv\Scripts\activate
 deactivate
 
 # Initial Setup for Database
-1. in mysql, CREATE USER 'Mindify_Admin'@'localhost' IDENTIFIED BY 'Mindify404';
-2. in mysql, CREATE DATABASE mindify_db;
-3. in mysql, GRANT ALL PRIVILEGES ON mindify_db . * TO 'Mindify_Admin'@'localhost';
+1. sudo mysql -u root
+2. in mysql> CREATE USER 'Mindify_Admin'@'localhost' IDENTIFIED BY 'Mindify404';
+3. in mysql> CREATE DATABASE mindify_db;
+4. in mysql> GRANT ALL PRIVILEGES ON mindify_db . * TO 'Mindify_Admin'@'localhost';
 
 ## Then inside of backend directory, run the following commands in terminal:
 1. flask db init
@@ -34,6 +35,6 @@ deactivate
 3. flask db upgrade
 ## to check for success:
 1. sudo mysql -u root
-2. in mysql, use mindify_db;
-3. in mysql, show tables;
+2. in mysql> use mindify_db;
+3. in mysql> show tables;
 
