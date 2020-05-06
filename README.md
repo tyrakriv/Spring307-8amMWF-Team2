@@ -11,5 +11,14 @@
 2. sudo apt install nodejs
 3. sudo apt install npm
 
-## When running: 
-python3 app.py
+# Ensure virtual environment is setup
+pip3 install virtualenv
+
+## __Before any running or developing the backend__ : 
+Activate virtual environment in 'Backend' Directory:
+### On Mac / Linux:
+source venv/bin/activate
+### on Windows:
+venv\Scripts\activate
+## To deavtivate virtual environment
+deactivate
