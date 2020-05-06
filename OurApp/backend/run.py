@@ -1,7 +1,12 @@
-from flask import Flask, render_template
+import os
 
-app = Flask(__name__)
+from app import create_app
+#from flask import Flask, render_template
 
+config_name = os.getenv('FLASK_CONFIG')
+app = create_app(config_name)
+
+"""
 @app.route("/")
 @app.route("/home")
 def home():
@@ -22,7 +27,7 @@ def login():
 @app.route("/register")
 def register():
     return render_template("register.html", title = "Welcome!")
-    
+"""
+
 if __name__ == "__main__":
-    #app.run() # when not debugging
-    app.run(debug = True) # when debugging
+    app.run()
