@@ -27,6 +27,7 @@ class App extends Component{
   render(){
     return (
       <div className="App">
+        <p>My Token = {window.token}</p>
         <Todos todos={this.state.todos}/>
       </div>
     );
