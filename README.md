@@ -1,5 +1,12 @@
 # Spring307-8amMWF-Team2
 
+# Running Convention:
+We will be running our web app exclusively from the flask backend. In order to do this, we must:
+1. "npm run build" in the setup-react directory to compile the react app
+2. "python3 run.py" in the flask-backend directory to run the web app from our flask backend
+Because of this convention, we will not be able to take advantage of live debugging mode, since we 
+have to recompile our react app everytime we want to see a change.
+
 # Initial Setup for Backend
 1. sudo apt update
 2. sudo apt install python3 
