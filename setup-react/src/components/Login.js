@@ -32,6 +32,7 @@ export const Login = () => {
                 </FormGroup>
                 <Button onClick={async () =>{
                      const login = {email, password};
+                     console.log(JSON.stringify(login));
                      const response = await fetch('/login', {
                          method: 'POST',
                          headers:{
