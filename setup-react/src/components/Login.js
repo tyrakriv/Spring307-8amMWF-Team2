@@ -28,11 +28,11 @@ export const Login = () => {
                     <Input 
                         value={password} 
                         placeholder = "Password"
-                        on
                         onChange={e => setPassword(e.target.value)}/>
                 </FormGroup>
                 <Button onClick={async () =>{
                      const login = {email, password};
+                     console.log(JSON.stringify(login));
                      const response = await fetch('/login', {
                          method: 'POST',
                          headers:{
