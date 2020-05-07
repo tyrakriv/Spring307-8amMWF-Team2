@@ -1,36 +1,20 @@
-import React, {Component} from 'react';
-import Todos from  './components/Todos'
+
+import React, {useEffect, useState, Component} from 'react';
 import './App.css';
+import {Login} from './components/Login';
+import {Register} from './components/Register';
+import {Container} from "semantic-ui-react"
 
-class App extends Component{
+function App(){
 
-  state = {
-    todos: [
-      {
-        id: 1,
-        title: 'Record Mood',
-        completed: false
-      },
-      {
-        id: 2,
-        title: 'Journal',
-        completed: false
-      },
-      {
-        id: 3,
-        title: 'Take a Walk',
-        completed: false
-      }
-    ]
-  }
-
-  render(){
     return (
-      <div className="App">
-        <Todos todos={this.state.todos}/>
+      <div className="login-form">
+        <Container>
+          <Register/>
+        </Container>
       </div>
+
     );
-  }
 }
 
 export default App;
