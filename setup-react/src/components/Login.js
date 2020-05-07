@@ -28,7 +28,6 @@ export const Login = () => {
                     <Input 
                         value={password} 
                         placeholder = "Password"
-                        on
                         onChange={e => setPassword(e.target.value)}/>
                 </FormGroup>
                 <Button onClick={async () =>{
