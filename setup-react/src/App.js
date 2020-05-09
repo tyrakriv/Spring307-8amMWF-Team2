@@ -10,7 +10,7 @@ function App(){
     return (
       <div className="login-form">
         <Container>
-          <Register/>
+          <Login/>
         </Container>
       </div>
 
