@@ -8,7 +8,8 @@ export const Register = () => {
     const [last_name, setLast_name] = useState('');
     return (           
         <div> 
-            <Form className="login-form">           
+            <Form className="login-form">
+                
                 <h1>
                 <span className="font-weight-bold">Register</span>
                 </h1>
@@ -56,7 +57,6 @@ export const Register = () => {
                         placeholder = "Password"
                         onChange={e => setPassword(e.target.value)}/>
                 </FormGroup>
-                
                 <Button onClick={async () =>{
                      const register = {email, username, first_name, last_name, password};
                      const response = await fetch('/Register', {
