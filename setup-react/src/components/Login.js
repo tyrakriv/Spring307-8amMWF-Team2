@@ -6,10 +6,9 @@ export const Login = () => {
     return (           
         <div> 
             <Form className="login-form">
-                
                 <h1>
                 <div className="text-right">
-                <Button className=" btn-dark text-right">sign up</Button>
+                    <Button className=" btn-dark text-right">sign up</Button>
                 </div>
                 <span className="font-weight-bold">Mindify</span>
                 </h1>
@@ -30,6 +29,7 @@ export const Login = () => {
                         placeholder = "Password"
                         onChange={e => setPassword(e.target.value)}/>
                 </FormGroup>
+                
                 <Button onClick={async () =>{
                      const login = {email, password};
                      console.log(JSON.stringify(login));
