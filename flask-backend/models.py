@@ -1,7 +1,7 @@
 # nonlocal
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
-
+from datetime import datetime
 # local
 from . import db
 
@@ -17,6 +17,7 @@ class User(UserMixin, db.Model):
     first_name = db.Column(db.String(60), index=True)
     last_name = db.Column(db.String(60), index=True)
     password_hash = db.Column(db.String(128))
+    date_created = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     is_admin = db.Column(db.Boolean, default=False)
     
     # @property

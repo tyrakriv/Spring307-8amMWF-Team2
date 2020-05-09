@@ -30,7 +30,7 @@ def create_app():
     #login_manager.init_app(app)
     # login_manager.login_message = "You must be logged in to access this page."
     # login_manager.login_view = "auth.login"
-    # migrate = Migrate(app, db) # allows us to run migrations using Flask-Migrate
+    migrate = Migrate(app, db) # allows us to run migrations using Flask-Migrate
     
     #from app import models
 

@@ -33,3 +33,10 @@ def login_user():
 # @main.route('/journal', methods=['GET', 'POST'])
 # def get_journal():
 
+@main.route('/getNewestUser', methods = ['GET']) 
+def get_newest_user():
+
+    user_sql = User.query.order_by(User.date_created.desc()).first()
+    user = {'username' : user_sql.username, 'email' : user_sql.email, 'first_name' : user_sql.first_name, 'last_name' : user_sql.last_name, 'date_created' : user_sql.date_created}
+
+    return jsonify({'newestUser': user})
