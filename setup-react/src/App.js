@@ -1,7 +1,7 @@
 
 import React, {useEffect, useState, Component} from 'react';
 import './App.css';
-import {newUserInfo} from './components/newUserInfo';
+import {NewUserInfo} from './components/NewUserInfo';
 import {Login} from './components/Login';
 import {Register} from './components/Register';
 import {Container} from "semantic-ui-react"
@@ -11,7 +11,7 @@ function App(){
     useEffect(() => {
       fetch('/getNewestUser').then(response => 
         response.json().then(data => {
-          setNewUser(data.newestUser);   
+          setNewUser(data.newestUser);
         })
       );
     }, [])
@@ -20,7 +20,7 @@ function App(){
         <Container>
           <Register/>
         </Container>
-        <newUserInfo newUser = {newUser}/>
+        <NewUserInfo newUser = {newUser}/>
       </div>
 
     );
