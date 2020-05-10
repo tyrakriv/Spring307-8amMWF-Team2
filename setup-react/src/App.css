@@ -11,6 +11,10 @@
   padding: 0;
 }
 
+.welcome{
+  color: #444;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
