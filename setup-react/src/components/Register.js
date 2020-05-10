@@ -57,10 +57,11 @@ export const Register = () => {
                         placeholder = "Password"
                         onChange={e => setPassword(e.target.value)}/>
                 </FormGroup>
+
                 
                 <Button onClick={async () =>{
                      const register = {email, username, first_name, last_name, password};
-                     const response = await fetch('/register', {
+                     const response = await fetch('/Register', {
                          method: 'POST',
                          headers:{
                             'Content-Type': 'application/json'
