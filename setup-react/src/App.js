@@ -1,6 +1,6 @@
 import React, {useEffect, useState, Component} from 'react';
 import './App.css';
-import {newUserInfo} from './components/newUserInfo';
+import {newUserInfo} from './components/NewUserInfo';
 import {Login} from './components/Login';
 import {Register} from './components/Register';
 import {Container} from "semantic-ui-react"
