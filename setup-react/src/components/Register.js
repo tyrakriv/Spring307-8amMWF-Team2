@@ -61,7 +61,7 @@ export const Register = () => {
                 
                 <Button onClick={async () =>{
                      const register = {email, username, first_name, last_name, password};
-                     const response = await fetch('/Register', {
+                     const response = await fetch('/register', {
                          method: 'POST',
                          headers:{
                             'Content-Type': 'application/json'
