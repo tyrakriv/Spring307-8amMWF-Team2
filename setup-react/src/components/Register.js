@@ -68,6 +68,9 @@ export const Register = () => {
                          },
                          body: JSON.stringify(register)
                      })
+                     if (response.status == 409) {
+                         console.log("Error 409: ", response.statusText);
+                     }
 
                     }}className="btn-lg btn-dark btn-block">Submit</Button>
             </Form>
