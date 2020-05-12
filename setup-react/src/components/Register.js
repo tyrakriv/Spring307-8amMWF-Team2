@@ -68,9 +68,18 @@ export const Register = () => {
                          },
                          body: JSON.stringify(register)
                      })
-                     if (response.status == 409) {
-                         console.log("Error 409: ", response.statusText);
-                     }
+                     .then(response => { /*if status=409, then unsuccessful registration*/
+                         if (response.status == 409) {
+                             response.text().then((body) => {
+                                 console.log(body); /* body is either "Email already linked 
+                                                    to an account" or "Username Taken" */
+                             });
+                            }   
+                         else { /* successful creation of account */
+                             console.log("Successful Registration");
+                             /* redirect to the home page or login page here */
+                         }
+                     })
 
                     }}className="btn-lg btn-dark btn-block">Submit</Button>
             </Form>
