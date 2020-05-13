@@ -5,7 +5,7 @@ from flask_login import current_user, login_user, logout_user
 
 # local
 from . import db
-from .models import User
+from .models import User, Journal
 
 
 main = Blueprint('main', __name__)
@@ -59,9 +59,15 @@ def logout():
     logout_user()
     return 'Successful Logout', 201
 
+""" **************************** Journal Views ******************************* """
+@main.route('/journal', methods=['POST'])
+def post_journal():
+    journal_data = request.get_json()
+    new_entry = Journal(body=journal_data['body'], user_id=current_user.id)
+    db.session.add(new_entry)
+    db.session.commit()
 
-# @main.route('/journal', methods=['GET', 'POST'])
-# def get_journal():
+    return 'Successful Journal Input', 201
 
 @main.route('/getNewestUser', methods = ['GET']) 
 def get_newest_user():

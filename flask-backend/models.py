@@ -18,17 +18,18 @@ class User(UserMixin, db.Model):
     last_name = db.Column(db.String(60), index=True)
     password_hash = db.Column(db.String(128))
     date_created = db.Column(db.DateTime, index=True, default=datetime.utcnow)
-    is_admin = db.Column(db.Boolean, default=False)
+    is_contributor = db.Column(db.Boolean, default=False)
+    journals = db.relationship('Journal', backref='author', lazy='dynamic')
     
     @property
     def password(self):
         """ prevents password from being accessed """
         raise AttributeError('password is not an accessable attribute')
 
-    @password.setter
-    def set_password(self, passwd):
-        """ set password to a hashed password """
-        self.password_hash = generate_password_hash(passwd)
+    # @password.setter
+    # def set_password(self, passwd):
+    #     """ set password to a hashed password """
+    #     self.password_hash = generate_password_hash(passwd)
 
     def verify_password(self, password):
         """ check if hashed password matches actual password """
@@ -43,3 +44,15 @@ class User(UserMixin, db.Model):
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
+
+class Journal(db.Model):
+    """ create a user table """
+    __tablename__ = 'journals'
+    
+    id = db.Column(db.Integer, primary_key=True)
+    body = db.Column(db.String(8000))
+    date_created = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+
+    def __repr__(self):
+        return "<Journal's user_id={0}, created on {1}>".format(self.user_id, self.date_created)
