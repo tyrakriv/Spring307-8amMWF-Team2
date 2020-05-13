@@ -10,7 +10,7 @@ from flask_migrate import Migrate
 # initialize database
 db = SQLAlchemy()
 
-#login_manager = LoginManager()
+login_manager = LoginManager()
 
 def create_app():
 
@@ -27,10 +27,10 @@ def create_app():
 
     db.init_app(app)
 
-    #login_manager.init_app(app)
-    # login_manager.login_message = "You must be logged in to access this page."
-    # login_manager.login_view = "auth.login"
-    # migrate = Migrate(app, db) # allows us to run migrations using Flask-Migrate
+    login_manager.init_app(app)
+    #login_manager.login_message = "You must be logged in to access this page."
+    login_manager.login_view = "login"
+    migrate = Migrate(app, db) # allows us to run migrations using Flask-Migrate
     
     #from app import models
 

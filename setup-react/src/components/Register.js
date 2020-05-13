@@ -57,6 +57,8 @@ export const Register = () => {
                         placeholder = "Password"
                         onChange={e => setPassword(e.target.value)}/>
                 </FormGroup>
+
+                
                 <Button onClick={async () =>{
                      const register = {email, username, first_name, last_name, password};
                      const response = await fetch('/register', {
@@ -65,6 +67,18 @@ export const Register = () => {
                             'Content-Type': 'application/json'
                          },
                          body: JSON.stringify(register)
+                     })
+                     .then(response => { /*if status=409, then unsuccessful registration*/
+                         if (response.status == 409) {
+                             response.text().then((body) => {
+                                 console.log(body); /* body is either "Email already linked 
+                                                    to an account" or "Username Taken" */
+                             });
+                            }   
+                         else { /* successful creation of account */
+                             console.log("Successful Registration");
+                             /* redirect to the home page or login page here */
+                         }
                      })
 
                     }}className="btn-lg btn-dark btn-block">Submit</Button>
