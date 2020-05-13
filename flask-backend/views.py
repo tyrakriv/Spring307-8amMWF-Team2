@@ -2,7 +2,6 @@
 from flask import Blueprint, jsonify, render_template, request
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import current_user, login_user, logout_user
-
 # local
 from . import db
 from .models import User, Journal
@@ -63,11 +62,21 @@ def logout():
 @main.route('/journal', methods=['POST'])
 def post_journal():
     journal_data = request.get_json()
-    new_entry = Journal(body=journal_data['body'], user_id=current_user.id)
+    new_entry = Journal(title=journal_data['title'], body=journal_data['body'], user_id=current_user.id)
     db.session.add(new_entry)
     db.session.commit()
 
     return 'Successful Journal Input', 201
+
+@main.route('/journal', methods=['GET'])
+def get_users_entries():
+    journal_entries = current_user.journals.all()
+    journals = []
+    for entry in journal_entries:
+        journals.append({'title' : entry.title, 'body' : entry.body, 'date_created' : entry.date_created})
+
+    return jsonify({'journal_entries' : journals})
+
 
 @main.route('/getNewestUser', methods = ['GET']) 
 def get_newest_user():

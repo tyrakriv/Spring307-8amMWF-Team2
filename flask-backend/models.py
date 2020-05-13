@@ -50,6 +50,7 @@ class Journal(db.Model):
     __tablename__ = 'journals'
     
     id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(100), index=True)
     body = db.Column(db.String(8000))
     date_created = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
