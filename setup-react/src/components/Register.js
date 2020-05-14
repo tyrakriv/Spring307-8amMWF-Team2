@@ -9,7 +9,14 @@ export const Register = () => {
     return (           
         <div> 
             <Form className="login-form">
-                
+                <div className="text-right">
+                <Button 
+                        href="/register"
+                        className=" btn-dark text-right">
+                        Log in
+                </Button>
+
+                </div>              
                 <h1>
                 <span className="font-weight-bold">Register</span>
                 </h1>

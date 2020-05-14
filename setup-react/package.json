@@ -2,7 +2,6 @@
   "name": "setup-react",
   "version": "0.1.0",
   "private": true,
-
   "homepage": "./",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
@@ -16,13 +15,6 @@
     "reactstrap": "^8.4.1",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.88.2"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "start-api": "cd api && venv/bin/flask run --no-debugger",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -45,5 +37,8 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:5000"
+  "proxy": "http://localhost:5000",
+  "devDependencies": {
+    "jest": "^26.0.1"
+  }
 }

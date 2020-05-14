@@ -8,7 +8,11 @@ export const Login = () => {
             <Form className="login-form">
                 <h1>
                 <div className="text-right">
-                    <Button className=" btn-dark text-right">sign up</Button>
+                    <Button 
+                        href="/register/register"
+                        className=" btn-dark text-right">
+                        sign up
+                    </Button>
                 </div>
                 <span className="font-weight-bold">Mindify</span>
                 </h1>
