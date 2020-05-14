@@ -10,6 +10,7 @@
     "bootstrap": "^4.4.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "react-social-login-buttons": "^3.0.0",
     "reactstrap": "^8.4.1",
@@ -39,6 +40,7 @@
   },
   "proxy": "http://localhost:5000",
   "devDependencies": {
-    "jest": "^26.0.1"
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2"
   }
 }
