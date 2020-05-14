@@ -13,3 +13,23 @@ a{
   color: #333;
   text-decoration: none;
 }
+
+nav {
+  /*background-color: lightblue;*/
+  display: flex;
+  justify-content: space-between;
+  padding: 25px 40 px;
+}
+
+nav ul li {
+  list-style: none;
+  /*display: inline-block;*/
+}
+
+nav li a{
+  text-decoration: none;
+  padding: 30px 15px;
+  line-height: 50px;
+  margin-left: 15px;
+  font-size: large;
+}

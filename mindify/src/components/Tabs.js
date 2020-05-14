@@ -1,46 +1,29 @@
-import React, { Component } from 'react'
+import React from 'react';
+import {Button, Form, Label} from 'reactstrap';
 
-export class Tabs extends Component {
-    state = {
-        tabs: [
-          {
-            id: 1,
-            title: 'Profile',
-            count: 0
-          },
-          {
-            id: 2,
-            title: 'Home',
-            count: 10
-          },
-          {
-            id: 3,
-            title: 'Journal',
-            count: 20
-          },
-          {
-            id: 4,
-            title: 'Survey',
-            count: 30
-          },
-          {
-            id: 5,
-            title: 'TODO',
-            count: 40
-          }
-        ]
-    }
-    render() {
-        return this.state.tabs.map((tabs) => (
-            <h2 style = {{
-                color: 'blue',
-                paddingLeft: 30,
-                lineHeight: 1.7,
-                position: 'absolute',
-                top: 100 + tabs.count*4.5
-            }}>{tabs.title}</h2>
-        ));
-    }
+function Tabs() {
+  return (
+    <Form className="tabs">
+      <div>
+        <h1 style = {{
+          paddingTop: 30,
+          paddingLeft: 30,
+          textAlign: "left"
+        }}>Mindify</h1>
+
+        <nav>
+          <ul>
+            <li><a href="/Profile">Profile</a></li>
+            <li><Button href="/Homepage">Home</Button></li>
+            <li><a href="/Journal">Journal</a></li>
+            <li><a href="/Survey">Survey</a></li>
+            <li><a href="/Todo">TODO</a></li>
+          </ul>
+          <h2><a href="/Loginpage">Signout</a></h2>
+        </nav>
+      </div>
+    </Form>
+  )
 }
 
-export default Tabs;
+export default Tabs

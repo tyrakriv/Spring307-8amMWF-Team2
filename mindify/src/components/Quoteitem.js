@@ -9,8 +9,9 @@ export class Quoteitem extends Component {
                 paddingLeft: 200,
                 paddingRight: 200,
                 textAlign: 'center',
-                fontSize: 20
-            }}>
+                fontSize: 20,
+                //font: 'fantasy'
+            }}>You Matter.
             </div>
         )
     }
