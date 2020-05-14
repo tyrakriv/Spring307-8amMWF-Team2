@@ -18,9 +18,9 @@ function App(){
     return (
       <div className="login-form">
         <Container>
-          <Register/>
+          <Login/>
         </Container>
-        <NewUserInfo newUser = {newUser}/>
+        {/*<NewUserInfo newUser = {newUser}/>*/}
       </div>
 
     );

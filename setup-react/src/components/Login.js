@@ -1,7 +1,7 @@
 import React, { Component, useState } from "react";
 import {Button, Form, FormGroup, Label, Input} from 'reactstrap';
 export const Login = () => {
-    const [email, setEmail] = useState('');
+    const [email_or_username, setName] = useState('');
     const [password, setPassword] = useState('');
     return (           
         <div> 
@@ -13,12 +13,12 @@ export const Login = () => {
                 <span className="font-weight-bold">Mindify</span>
                 </h1>
                 <FormGroup>
-                    <Label>Email</Label>
+                    <Label>Username or Email</Label>
                     <h2></h2>
                     <Input 
-                        value={email} 
-                        placeholder = "Email" 
-                        onChange={e => setEmail(e.target.value)}/>
+                        value={email_or_username} 
+                        placeholder = "Username or Email" 
+                        onChange={e => setName(e.target.value)}/>
                 </FormGroup>
             
                 <FormGroup>
@@ -31,7 +31,7 @@ export const Login = () => {
                 </FormGroup>
                 
                 <Button onClick={async () =>{
-                     const login = {email, password};
+                     const login = {email_or_username, password};
                      console.log(JSON.stringify(login));
                      const response = await fetch('/login', {
                          method: 'POST',
@@ -40,10 +40,18 @@ export const Login = () => {
                          },
                          body: JSON.stringify(login)
                      })
-                     if(response.ok)
-                     {
-                         console.log("response worked");
-                     }
+                     .then( response => {
+                         if (response.ok) {
+                            console.log("Successful Login"); 
+                            /* redirect to home page */ 
+                         }
+                         else {
+                             console.log("Invalid Username or Password")
+                             /* tell user username or password is incorrect,
+                                and reload login page */ 
+                         }
+                     })
+                    
                     }}className="btn-lg btn-dark btn-block">Log in</Button>
             </Form>
         </div>);
