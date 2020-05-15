@@ -26,10 +26,10 @@ class User(UserMixin, db.Model):
         """ prevents password from being accessed """
         raise AttributeError('password is not an accessable attribute')
 
-    # @password.setter
-    # def set_password(self, passwd):
-    #     """ set password to a hashed password """
-    #     self.password_hash = generate_password_hash(passwd)
+    @password.setter
+    def password(self, passwd):
+        """ set password to a hashed password """
+        self.password_hash = generate_password_hash(passwd)
 
     def verify_password(self, password):
         """ check if hashed password matches actual password """

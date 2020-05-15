@@ -3,7 +3,7 @@ from flask import Blueprint, jsonify, render_template, request
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import current_user, login_user, logout_user
 # local
-from . import db
+from . import db, login_manager
 from .models import User, Journal
 
 
@@ -19,6 +19,8 @@ def home():
 def register_user():
     user_data = request.get_json()
     # user = User.query
+    # if '@' in user_data['username']:
+    #     return "May not have '@' symbol in username", 409
     # if email already exists in the db, registration error
     if User.query.filter_by(email=user_data['email']).first():
         return 'This email is already linked with an account', 409
@@ -26,8 +28,8 @@ def register_user():
     if User.query.filter_by(username=user_data['username']).first():
         return 'Username is taken', 409
         
-    passwd_hash = generate_password_hash(user_data['password'])
-    new_user = User(email=user_data['email'], username=user_data['username'], first_name=user_data['first_name'], last_name=user_data['last_name'], password_hash=passwd_hash)
+    #passwd_hash = generate_password_hash(user_data['password'])
+    new_user = User(email=user_data['email'], username=user_data['username'], first_name=user_data['first_name'], last_name=user_data['last_name'], password=user_data['password'])
 
     db.session.add(new_user)
     db.session.commit()
