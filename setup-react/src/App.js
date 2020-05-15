@@ -19,10 +19,12 @@ function App(){
     return (
       <div className="login-form">
         <BrowserRouter>
+
           <Switch>
             <Route exact path="/register" component={Login}/>
             <Route path="/register/register" component={Register}/>
           </Switch>
+          
         </BrowserRouter>
       </div>
 
