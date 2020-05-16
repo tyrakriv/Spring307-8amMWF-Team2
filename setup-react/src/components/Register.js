@@ -11,7 +11,7 @@ export const Register = () => {
             <Form className="login-form">
                 <div className="text-right">
                 <Button 
-                        href="/register"
+                        href="/"
                         className=" btn-dark text-right">
                         Log in
                 </Button>
@@ -83,12 +83,15 @@ export const Register = () => {
                              });
                             }   
                          else { /* successful creation of account */
-                             console.log("Successful Registration");
+                             console.log("Successful Registration")
                              /* redirect to the home page or login page here */
                          }
                      })
 
-                    }}className="btn-lg btn-dark btn-block">Submit</Button>
+                    }}
+                    className="btn-lg btn-dark btn-block">
+                    Submit
+                    </Button>
             </Form>
         </div>);
 

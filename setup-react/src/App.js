@@ -6,9 +6,12 @@ import {Login} from './components/Login';
 import {Register} from './components/Register';
 import {Container} from "semantic-ui-react";
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import Homepage from './components/Homepage';
+
 
 function App(){
     const [newUser, setNewUser] = useState([]);
+    const check = true;
     useEffect(() => {
       fetch('/getNewestUser').then(response => 
         response.json().then(data => {
@@ -21,10 +24,11 @@ function App(){
         <BrowserRouter>
 
           <Switch>
-            <Route exact path="/register" component={Login}/>
-            <Route path="/register/register" component={Register}/>
+            <Route exact path="/" component={Login}/>
+            <Route path="/register" component={Register}/>
+            <Route path="/homepage" component={Homepage}/>
           </Switch>
-          
+
         </BrowserRouter>
       </div>
 
