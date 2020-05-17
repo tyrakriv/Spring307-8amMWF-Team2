@@ -9,11 +9,7 @@ from app.models import User, Journal
 from app.views import *
 
 
-""" You will have to manually delete the user from the database after running the test cases.
-    This is because the unittest cannot have a dependency with the db object """
 class TestCase(unittest.TestCase):
-    def setUp(self):
-        self.app = app.test_client()
     
     def test_password_privacy(self):
         user = User(email='user@aol.com', username='test')
@@ -22,10 +18,16 @@ class TestCase(unittest.TestCase):
             password = user.password
     
     def verify_password_success(self):
-        """ write test """
+        correct = 'password'
+        user = User(email='user@aol.com', username='test', password=correct)
+        self.assertEqual(user.verify_password(correct), True)
+        print(user.verify_password("password"))
 
     def verify_passsword_failure(self):
-        """ write test """
+        correct = 'password'
+        incorrect = 'notpassword'
+        user = User(email='user@aol.com', username='test', password=correct)
+        self.assertEqual(user.verify_password(incorrect), False)
         
     ## Data Base Tests are more so Integration Tests
     # def test_successful_registration(self):
