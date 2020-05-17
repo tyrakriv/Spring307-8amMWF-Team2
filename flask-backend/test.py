@@ -17,17 +17,16 @@ class TestCase(unittest.TestCase):
         with self.assertRaises(AttributeError):
             password = user.password
     
-    def verify_password_success(self):
+    def test_password_success(self):
         correct = 'password'
         user = User(email='user@aol.com', username='test', password=correct)
-        self.assertEqual(user.verify_password(correct), True)
-        print(user.verify_password("password"))
+        self.assertTrue(user.verify_password(correct))
 
-    def verify_passsword_failure(self):
+    def test_passsword_failure(self):
         correct = 'password'
         incorrect = 'notpassword'
         user = User(email='user@aol.com', username='test', password=correct)
-        self.assertEqual(user.verify_password(incorrect), False)
+        self.assertFalse(user.verify_password(incorrect))
         
     ## Data Base Tests are more so Integration Tests
     # def test_successful_registration(self):
