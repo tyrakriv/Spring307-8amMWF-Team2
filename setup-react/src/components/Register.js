@@ -6,6 +6,7 @@ export const Register = () => {
     const [username, setUsername] = useState('');
     const [first_name, setFirst_name] = useState('');
     const [last_name, setLast_name] = useState('');
+    var ref = "/register";
     return (           
         <div> 
             <Form className="login-form">
@@ -78,17 +79,21 @@ export const Register = () => {
                      .then(response => { /*if status=409, then unsuccessful registration*/
                          if (response.status == 409) {
                              response.text().then((body) => {
-                                 console.log(body); /* body is either "Email already linked 
+                                 console.log(body); 
+                                 ref = "/register";
+                                 /* body is either "Email already linked 
                                                     to an account" or "Username Taken" */
                              });
                             }   
                          else { /* successful creation of account */
                              console.log("Successful Registration")
+                             ref = "/homepage";
                              /* redirect to the home page or login page here */
                          }
                      })
 
                     }}
+                    href = {ref}
                     className="btn-lg btn-dark btn-block">
                     Submit
                     </Button>

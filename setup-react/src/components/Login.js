@@ -3,7 +3,7 @@ import {Button, Form, FormGroup, Label, Input} from 'reactstrap';
 export const Login = () => {
     const [email_or_username, setName] = useState('');
     const [password, setPassword] = useState('');
-    const ref = "/";
+    var ref = "/";
     return (           
         <div> 
             <Form className="login-form">
