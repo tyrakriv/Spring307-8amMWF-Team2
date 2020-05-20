@@ -4,10 +4,14 @@ import './App.css';
 import {NewUserInfo} from './components/NewUserInfo';
 import {Login} from './components/Login';
 import {Register} from './components/Register';
-import {Container} from "semantic-ui-react"
+import {Container} from "semantic-ui-react";
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import Homepage from './components/Homepage';
+
 
 function App(){
     const [newUser, setNewUser] = useState([]);
+    const check = true;
     useEffect(() => {
       fetch('/getNewestUser').then(response => 
         response.json().then(data => {
@@ -17,10 +21,15 @@ function App(){
     }, [])
     return (
       <div className="login-form">
-        <Container>
-          <Login/>
-        </Container>
-        {/*<NewUserInfo newUser = {newUser}/>*/}
+        <BrowserRouter>
+
+          <Switch>
+            <Route exact path="/" component={Login}/>
+            <Route path="/register" component={Register}/>
+            <Route path="/homepage" component={Homepage}/>
+          </Switch>
+
+        </BrowserRouter>
       </div>
 
     );

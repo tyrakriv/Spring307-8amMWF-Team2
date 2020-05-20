@@ -3,12 +3,17 @@ import {Button, Form, FormGroup, Label, Input} from 'reactstrap';
 export const Login = () => {
     const [email_or_username, setName] = useState('');
     const [password, setPassword] = useState('');
+    var ref = "/";
     return (           
         <div> 
             <Form className="login-form">
                 <h1>
                 <div className="text-right">
-                    <Button className=" btn-dark text-right">sign up</Button>
+                    <Button
+                        href={ref}
+                        className=" btn-dark text-right">
+                        sign up
+                    </Button>
                 </div>
                 <span className="font-weight-bold">Mindify</span>
                 </h1>
@@ -43,16 +48,21 @@ export const Login = () => {
                      .then( response => {
                          if (response.ok) {
                             console.log("Successful Login"); 
+                            ref = "/homepage";
                             /* redirect to home page */ 
                          }
                          else {
                              console.log("Invalid Username or Password")
+                             ref = "/";
                              /* tell user username or password is incorrect,
                                 and reload login page */ 
                          }
                      })
                     
-                    }}className="btn-lg btn-dark btn-block">Log in</Button>
+                    }}
+                    href = {ref}
+                    className="btn-lg btn-dark btn-block">
+                    Log in</Button>
             </Form>
         </div>);
 
