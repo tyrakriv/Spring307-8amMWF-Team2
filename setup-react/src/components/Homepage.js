@@ -1,5 +1,12 @@
-import React from 'react';
-//import Quoteitem from './Quoteitem';
+import React, { Component, Fragment } from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Quoteitem from './Quoteitem';
+import {Button, Form, Label} from 'reactstrap';
+import Tabs from './Tabs';
+import Profile from './Profile';
+import Journal from './Journal';
+import Survey from './Survey';
+
 
 function Homepage() {
     // state = {
@@ -10,7 +17,20 @@ function Homepage() {
     return (
         <div>
             <h1>Home page</h1>
+            <Fragment>
+                <Tabs />
+             </Fragment>
         </div>
+       /* <Fragment>
+        <BrowserRouter>
+          <Tabs />
+          <Switch>
+            <Route path="/profile" component={Profile}/>
+            <Route path="/journal" component={Journal}/>
+            <Route path="/survey" component={Survey}/>
+          </Switch>
+        </BrowserRouter>
+      </Fragment>*/
     );
 }
 

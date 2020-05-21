@@ -64,9 +64,8 @@ export const Register = () => {
                         value={password} 
                         placeholder = "Password"
                         onChange={e => setPassword(e.target.value)}/>
-                </FormGroup>
-
-                
+                </FormGroup>  
+          
                 <Button onClick={async () =>{
                      const register = {email, username, first_name, last_name, password};
                      const response = await fetch('/register', {
