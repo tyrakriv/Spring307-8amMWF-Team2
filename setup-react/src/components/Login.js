@@ -3,6 +3,7 @@ import {Button, Form, FormGroup, Label, Input} from 'reactstrap';
 export const Login = () => {
     const [email_or_username, setName] = useState('');
     const [password, setPassword] = useState('');
+    const [is_contributor, setContributor] = useState(false);
     var ref = "/";
     return (           
         <div> 
@@ -10,7 +11,7 @@ export const Login = () => {
                 <h1>
                 <div className="text-right">
                     <Button
-                        href={ref}
+                        href="/register"
                         className=" btn-dark text-right">
                         sign up
                     </Button>
@@ -34,9 +35,20 @@ export const Login = () => {
                         placeholder = "Password"
                         onChange={e => setPassword(e.target.value)}/>
                 </FormGroup>
+
+                <FormGroup>
+                    <div className="text-center">
+                    <Input 
+                        type="checkbox"
+                        value={is_contributor}
+                        onChange={e => setContributor(e.target.checked)}/>
+                        Contributor
+                    </div>                    
+                </FormGroup>
+                
                 
                 <Button onClick={async () =>{
-                     const login = {email_or_username, password};
+                     const login = {email_or_username, password, is_contributor};
                      console.log(JSON.stringify(login));
                      const response = await fetch('/login', {
                          method: 'POST',
@@ -63,8 +75,10 @@ export const Login = () => {
                     href = {ref}
                     className="btn-lg btn-dark btn-block">
                     Log in</Button>
+                    
             </Form>
         </div>);
+        
 
 }
 
