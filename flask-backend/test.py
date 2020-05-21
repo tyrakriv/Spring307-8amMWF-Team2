@@ -27,6 +27,13 @@ class TestCase(unittest.TestCase):
         incorrect = 'notpassword'
         user = User(email='user@aol.com', username='test', password=correct)
         self.assertFalse(user.verify_password(incorrect))
+
+    def test_make_contributor(self):
+        user = User(email='test@aol.com', username='test', password='password')
+        #is_contributor defaults to false
+        self.assertFalse(user.is_contributor)
+        user.make_contributor()
+        self.assertTrue(user.is_contributor)
         
     ## Data Base Tests are more so Integration Tests
     # def test_successful_registration(self):

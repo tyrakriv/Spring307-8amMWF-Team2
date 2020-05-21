@@ -47,15 +47,23 @@ def login():
     # else get user by username
     else:
         user = User.query.filter_by(username=user_data['email_or_username']).first()
+    
+    # check to make sure the requested privileges match the privileges the user has
+    if user is not None:
+        authorized = True if (user_data['is_contributor'] == user.is_contributor) else False
+    
     # if the user does not exist or the password does not match the username/email, then return 401
     if user is None or not user.verify_password(password=user_data['password']):
         return 'Invalid username or password', 401
+    # if the user does not have the correct privileges, return 401
+    if not authorized:
+        return 'Invalid User-Privilege', 401
     else:
         login_user(user)
         return 'Successful Login', 201
 
 """ *************************** Logout View *********************************** """
-@main.route('/logout')
+@main.route('/logout', methods=['GET'])
 def logout():
     logout_user()
     return 'Successful Logout', 201
