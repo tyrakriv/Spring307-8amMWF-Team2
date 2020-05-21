@@ -35,6 +35,11 @@ class User(UserMixin, db.Model):
         """ check if hashed password matches actual password """
         return check_password_hash(self.password_hash, password)
 
+    def make_contributor(self):
+        """ set user to contributor """
+        self.is_contributor = True
+        #db.session.commit()
+
     def __repr__(self):
         return '<User: {}>'.format(self.username)
 
