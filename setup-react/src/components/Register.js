@@ -68,7 +68,7 @@ export const Register = () => {
           
                 <Button onClick={async () =>{
                      const register = {email, username, first_name, last_name, password};
-                     const response = await fetch('/register', {
+                     const response = await fetch('http://127.0.0.1:5000/api/register', {
                          method: 'POST',
                          headers:{
                             'Content-Type': 'application/json'
@@ -76,7 +76,7 @@ export const Register = () => {
                          body: JSON.stringify(register)
                      })
                      .then(response => { /*if status=409, then unsuccessful registration*/
-                         if (response.status == 409) {
+                         if (response.status === 409) {
                              response.text().then((body) => {
                                  console.log(body); 
                                  ref = "/register";
@@ -92,7 +92,7 @@ export const Register = () => {
                      })
 
                     }}
-                    href = {ref}
+                    href={ref}
                     className="btn-lg btn-dark btn-block">
                     Submit
                     </Button>

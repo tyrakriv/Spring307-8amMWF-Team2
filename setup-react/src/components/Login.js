@@ -50,29 +50,32 @@ export const Login = () => {
                 <Button onClick={async () =>{
                      const login = {email_or_username, password, is_contributor};
                      console.log(JSON.stringify(login));
-                     const response = await fetch('/login', {
+                     const response = await fetch('http://127.0.0.1:5000/api/login', {
                          method: 'POST',
                          headers:{
                             'Content-Type': 'application/json'
                          },
                          body: JSON.stringify(login)
                      })
-                     .then( response => {
-                         if (response.ok) {
+                     .then(response => {
+                         console.log(response.status);
+                         if (response.status === 201) {
                             console.log("Successful Login"); 
-                            ref = "/homepage";
-                            /* redirect to home page */ 
+                            ref="/homepage";
+                            console.log(ref);
+                            //redirect to home page
                          }
-                         else {
-                             console.log("Invalid Username or Password")
-                             ref = "/";
-                             /* tell user username or password is incorrect,
-                                and reload login page */ 
+                         else if (response.status === 204) {
+                            console.log("Invalid Username or Password or Incorrect Permissions");
+                            ref="/";
+                            console.log(ref);
+                            // reload login page
                          }
                      })
+                     .catch(error => console.log(error))
                     
                     }}
-                    href = {ref}
+                    //href={ref}
                     className="btn-lg btn-dark btn-block">
                     Log in</Button>
                     

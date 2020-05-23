@@ -15,26 +15,14 @@ import Profile from './components/Profile';
 
 
 function App(){
-    const [newUser, setNewUser] = useState([]);
-    const check = true;
-    useEffect(() => {
-      fetch('/getNewestUser').then(response => 
-        response.json().then(data => {
-          setNewUser(data.newestUser);
-        })
-      );
-    }, [])
     return (
-      <div className="login-form">
-        <BrowserRouter>
-          <Switch>
-            <Route exact path="/" component={Login}/>
-            <Route path="/register" component={Register}/>
-            <Route path="/homepage" component={Homepage}/>
-            <Route path="/profile" component={Profile}/>
-          </Switch>
-        </BrowserRouter>
-
+      <div>
+        <Switch>
+          <Route exact path="/" component={Login}/>
+          <Route path="/register" component={Register}/>
+          <Route path="/homepage" component={Homepage}/>
+          <Route path="/profile" component={Profile}/>
+        </Switch>
       </div>
 
     );
