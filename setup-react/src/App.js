@@ -4,6 +4,7 @@ import './App.css';
 import {NewUserInfo} from './components/NewUserInfo';
 import {Login} from './components/Login';
 import {Register} from './components/Register';
+import NewJournal from './components/NewJournal';
 import {Container} from "semantic-ui-react";
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Homepage from './components/Homepage';
@@ -22,6 +23,8 @@ function App(){
           <Route path="/register" component={Register}/>
           <Route path="/homepage" component={Homepage}/>
           <Route path="/profile" component={Profile}/>
+          <Route path="/journal/entry" component={NewJournal}/>
+          <Route path="/journal" component={Journal}/>
         </Switch>
       </div>
 
