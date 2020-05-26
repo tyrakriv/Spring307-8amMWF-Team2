@@ -16,9 +16,9 @@ function Homepage() {
     // }
     return (
         <div>
-            <h1>Home page</h1>
             <Fragment>
-                <Tabs />
+               <Tabs/>
+                <h1 className="text-right">Home page</h1>
              </Fragment>
         </div>
        /* <Fragment>

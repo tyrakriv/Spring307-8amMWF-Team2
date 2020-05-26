@@ -1,9 +1,11 @@
 import React from 'react'
+import Tabs from './Tabs';
 
 function Journal() {
     return (
         <div>
-            <h1>Journal page</h1>
+            <Tabs/>
+            <h1 className="text-right">Journal page</h1>
         </div>
     )
 }

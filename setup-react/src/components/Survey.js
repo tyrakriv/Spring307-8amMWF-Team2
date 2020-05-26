@@ -1,9 +1,11 @@
 import React from 'react'
+import Tabs from './Tabs';
 
 function Survey() {
     return (
         <div>
-            <h1>Survey page</h1>
+            <Tabs/>
+            <h1 className="text-right">Survey page</h1>
         </div>
     )
 }

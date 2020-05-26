@@ -1,9 +1,11 @@
 import React from 'react'
+import Tabs from './Tabs';
 
 function Profile() {
     return (
         <div>
-            <h1>Profile page</h1>
+            <Tabs/>
+            <h1 className="text-right">Profile page</h1>
         </div>
     )
 }

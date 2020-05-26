@@ -11,6 +11,18 @@
   padding: 0;
 }
 
+.tabs{
+  width: 100%;
+  max-width: 900px;
+  padding: 900px;
+  margin: auto;
+  height:100%;
+  color: #444;
+  line-height: 1.5;
+  margin:0px;
+  padding: 0;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;

@@ -32,6 +32,8 @@ function App(){
             <Route path="/register" component={Register}/>
             <Route path="/homepage" component={Homepage}/>
             <Route path="/profile" component={Profile}/>
+            <Route path="/journal" component={Journal}/>
+            <Route path="/survey" component={Survey}/>
           </Switch>
         </BrowserRouter>
 

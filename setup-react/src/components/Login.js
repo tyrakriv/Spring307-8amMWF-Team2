@@ -4,7 +4,7 @@ export const Login = () => {
     const [email_or_username, setName] = useState('');
     const [password, setPassword] = useState('');
     const [is_contributor, setContributor] = useState(false);
-    var ref = "/";
+    var ref = "/homepage";
     return (           
         <div> 
             <Form className="login-form">
