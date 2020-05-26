@@ -15,7 +15,7 @@ function Tabs() {
           <ul>
             <li><a href="/profile">Profile</a></li>
             <li><Button href="/homepage">Home</Button></li>
-            <li><a href="/journal">Journal</a></li>
+            <li><a href="/journal/entry">Journal</a></li>
             <li><a href="/survey">Survey</a></li>
             <li><a href="/Todo">TODO</a></li>
           </ul>

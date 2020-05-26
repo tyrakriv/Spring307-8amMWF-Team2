@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { Component, useState } from 'react';
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
-function NewJournal() {
+export const Newjournal = () => {
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
 
@@ -27,7 +28,5 @@ function NewJournal() {
                 </FormGroup>
             </Form>
         </div>
-    )
+    );
 }
-
-export default NewJournal
