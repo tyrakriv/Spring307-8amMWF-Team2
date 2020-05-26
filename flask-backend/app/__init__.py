@@ -3,6 +3,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_migrate import Migrate
+from flask_cors import CORS
 
 # local imports
 #from instance.config import app_config
@@ -31,7 +32,7 @@ def create_app():
     #login_manager.login_message = "You must be logged in to access this page."
     login_manager.login_view = "login"
     migrate = Migrate(app, db) # allows us to run migrations using Flask-Migrate
-    
+    CORS(app)
     #from app import models
 
     return app

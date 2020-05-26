@@ -1,0 +1,4 @@
+#!/bin/bash
+coverage run test.py
+coverage report --omit="*/python3/*","*/python3.7/*"
+

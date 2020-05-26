@@ -3,22 +3,23 @@ from flask import Blueprint, jsonify, render_template, request
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import current_user, login_user, logout_user
 # local
-from . import db
+from . import db, login_manager
 from .models import User, Journal
 
 
 main = Blueprint('main', __name__)
 
 @main.route('/home')
-@main.route('/')
 def home():
     return render_template('home.html', title='Home')
 
 """ ************************* Registration View ******************************* """
-@main.route('/register', methods=['GET', 'POST'])
+@main.route('/api/register', methods=['GET', 'POST'])
 def register_user():
     user_data = request.get_json()
     # user = User.query
+    # if '@' in user_data['username']:
+    #     return "May not have '@' symbol in username", 409
     # if email already exists in the db, registration error
     if User.query.filter_by(email=user_data['email']).first():
         return 'This email is already linked with an account', 409
@@ -26,8 +27,8 @@ def register_user():
     if User.query.filter_by(username=user_data['username']).first():
         return 'Username is taken', 409
         
-    passwd_hash = generate_password_hash(user_data['password'])
-    new_user = User(email=user_data['email'], username=user_data['username'], first_name=user_data['first_name'], last_name=user_data['last_name'], password_hash=passwd_hash)
+    #passwd_hash = generate_password_hash(user_data['password'])
+    new_user = User(email=user_data['email'], username=user_data['username'], first_name=user_data['first_name'], last_name=user_data['last_name'], password=user_data['password'])
 
     db.session.add(new_user)
     db.session.commit()
@@ -35,7 +36,7 @@ def register_user():
     return 'Successful Registration', 201
 
 """ ************************** Login View ************************************** """
-@main.route('/login', methods=['GET', 'POST'])
+@main.route('/api/login', methods=['GET', 'POST'])
 def login():
     user_data = request.get_json()
     # get the user from the database
@@ -45,21 +46,39 @@ def login():
     # else get user by username
     else:
         user = User.query.filter_by(username=user_data['email_or_username']).first()
+    
+    # check to make sure the requested privileges match the privileges the user has
+    if user is not None:
+        authorized = True if (user_data['is_contributor'] == user.is_contributor) else False
+    
     # if the user does not exist or the password does not match the username/email, then return 401
     if user is None or not user.verify_password(password=user_data['password']):
-        return 'Invalid username or password', 401
+        print("\n\n\n")
+        print("invalid username or password")
+        print("\n\n\n")
+        return 'Invalid username or password', 204
+
+    # if the user does not have the correct privileges, return 401
+    elif not authorized:
+        print("\n\n\n")
+        print("not authorized")
+        print("\n\n\n")
+        return 'Invalid User-Privilege', 204
     else:
         login_user(user)
+        print("\n\n\n")
+        print("Successful Login")
+        print("\n\n\n")
         return 'Successful Login', 201
 
 """ *************************** Logout View *********************************** """
-@main.route('/logout')
+@main.route('/api/logout', methods=['GET'])
 def logout():
     logout_user()
     return 'Successful Logout', 201
 
 """ **************************** Journal Views ******************************* """
-@main.route('/journal', methods=['POST'])
+@main.route('/api/journal', methods=['POST'])
 def post_journal():
     journal_data = request.get_json()
     new_entry = Journal(title=journal_data['title'], body=journal_data['body'], user_id=current_user.id)
@@ -68,7 +87,7 @@ def post_journal():
 
     return 'Successful Journal Input', 201
 
-@main.route('/journal', methods=['GET'])
+@main.route('/api/journal', methods=['GET'])
 def get_users_entries():
     journal_entries = current_user.journals.all()
     journals = []
