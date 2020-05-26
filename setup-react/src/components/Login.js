@@ -1,10 +1,12 @@
 import React, { Component, useState } from "react";
 import {Button, Form, FormGroup, Label, Input} from 'reactstrap';
+import {useHistory} from 'react-router-dom'
 export const Login = () => {
     const [email_or_username, setName] = useState('');
     const [password, setPassword] = useState('');
     const [is_contributor, setContributor] = useState(false);
-    var ref = "/";
+    //var ref = "/";
+    const history = useHistory();
     return (           
         <div> 
             <Form className="login-form">
@@ -61,14 +63,16 @@ export const Login = () => {
                          console.log(response.status);
                          if (response.status === 201) {
                             console.log("Successful Login"); 
-                            ref="/homepage";
+                            const ref="/homepage";
                             console.log(ref);
+                            history.push(ref);
                             //redirect to home page
                          }
                          else if (response.status === 204) {
                             console.log("Invalid Username or Password or Incorrect Permissions");
-                            ref="/";
+                            const ref="/";
                             console.log(ref);
+                            history.push(ref);
                             // reload login page
                          }
                      })
