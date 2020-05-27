@@ -3,7 +3,7 @@ import {Button, Form, Label} from 'reactstrap';
 
 function Tabs() {
   return (
-    <Form className="tabs">
+    <Form>
       <div>
       <h2 className="text-right"><Button href="/">Signout</Button></h2>
         <h1 style = {{
@@ -11,7 +11,6 @@ function Tabs() {
           paddingLeft: 0,
           textAlign: "left"
         }}>Mindify</h1>
-
         <nav>
             <Button href="/profile">Profile</Button>
             <h6></h6>
