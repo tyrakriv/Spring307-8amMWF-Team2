@@ -92,7 +92,7 @@ export const Register = () => {
                      })
 
                     }}
-                    href={ref}
+                    href={ref = "/homepage"}
                     className="btn-lg btn-dark btn-block">
                     Submit
                     </Button>

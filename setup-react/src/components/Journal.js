@@ -5,7 +5,9 @@ function Journal() {
     return (
         <div>
             <Tabs/>
-            <h1 className="text-right">Journal page</h1>
+            <h1 style={{
+                  top: 380
+                }}className="text-right">Journal page</h1>
         </div>
     )
 }

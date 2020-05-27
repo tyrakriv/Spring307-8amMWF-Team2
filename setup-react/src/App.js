@@ -25,6 +25,7 @@ function App(){
           <Route path="/profile" component={Profile}/>
           <Route path="/journal/entry" component={Newjournal}/>
           <Route path="/journal" component={Journal}/>
+          <Route path="/survey" component={Survey}/>
         </Switch>
       </div>
 

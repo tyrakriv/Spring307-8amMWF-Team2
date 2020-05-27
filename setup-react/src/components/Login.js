@@ -5,7 +5,7 @@ export const Login = () => {
     const [email_or_username, setName] = useState('');
     const [password, setPassword] = useState('');
     const [is_contributor, setContributor] = useState(false);
-    //var ref = "/";
+    var ref = "/";
     const history = useHistory();
     return (           
         <div> 
@@ -63,14 +63,14 @@ export const Login = () => {
                          console.log(response.status);
                          if (response.status === 201) {
                             console.log("Successful Login"); 
-                            const ref="/homepage";
+                            ref="/homepage";
                             console.log(ref);
                             history.push(ref);
                             //redirect to home page
                          }
                          else if (response.status === 204) {
                             console.log("Invalid Username or Password or Incorrect Permissions");
-                            const ref="/";
+                            ref="/";
                             console.log(ref);
                             history.push(ref);
                             // reload login page
@@ -79,7 +79,8 @@ export const Login = () => {
                      .catch(error => console.log(error))
                     
                     }}
-                    //href={ref}
+                    //COMMENT HREF OUT  
+                    href={ref = "/homepage"}
                     className="btn-lg btn-dark btn-block">
                     Log in</Button>
                     

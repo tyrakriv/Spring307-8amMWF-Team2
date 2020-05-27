@@ -3,24 +3,22 @@ import {Button, Form, Label} from 'reactstrap';
 
 function Tabs() {
   return (
-    <Form className="tabs">
+    <Form>
       <div>
       <h2 className="text-right"><Button href="/">Signout</Button></h2>
         <h1 style = {{
-          paddingTop: 30,
-          paddingLeft: 0,
-          textAlign: "left"
+          top: 20
+          //textAlign: "left"
         }}>Mindify</h1>
 
         <nav>
-            <Button href="/profile">Profile</Button>
+            <Button variant="primary" size="lg" href="/profile">Profile</Button>
             <h6></h6>
-            <Button href="/homepage">Home</Button>
+            <Button variant="primary" size="lg" href="/homepage">Home</Button>
             <h6></h6>
-            <Button href="/journal">Journal</Button>
+            <Button variant="primary" size="lg" href="/journal">Journal</Button>
             <h6></h6>
-            <Button href="/survey">Survey</Button>
-            <h6></h6>         
+            <Button variant="primary" size="lg" href="/survey">Survey</Button>      
         </nav>
       </div>
     </Form>
