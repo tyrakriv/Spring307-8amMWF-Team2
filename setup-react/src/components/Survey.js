@@ -13,6 +13,12 @@ function Survey(props) {
                 <h2 style={{
                     marginTop: 430
                 }} className="question">How do you feel about your time spent exercising?</h2>
+                <h2 style={{
+                    marginTop: 460
+                }} className="question">How do you feel about your time outside?</h2>
+                <h2 style={{
+                    marginTop: 490
+                }} className="question">How do you feel about your time with others?</h2>
             </div>
         </div>
     );
