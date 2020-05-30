@@ -1,25 +1,32 @@
 import React, { Component, useState } from "react";
 import {Button, Form, FormGroup, Label, Input} from 'reactstrap';
+import {useHistory} from 'react-router-dom'
 export const Login = () => {
-    const [email, setEmail] = useState('');
+    const [email_or_username, setName] = useState('');
     const [password, setPassword] = useState('');
+    const [is_contributor, setContributor] = useState(false);
+    var ref = "/";
+    const history = useHistory();
     return (           
         <div> 
             <Form className="login-form">
-                
                 <h1>
                 <div className="text-right">
-                <Button className=" btn-dark text-right">sign up</Button>
+                    <Button
+                        href="/register"
+                        className=" btn-dark text-right">
+                        sign up
+                    </Button>
                 </div>
                 <span className="font-weight-bold">Mindify</span>
                 </h1>
                 <FormGroup>
-                    <Label>Email</Label>
+                    <Label>Username or Email</Label>
                     <h2></h2>
                     <Input 
-                        value={email} 
-                        placeholder = "Email" 
-                        onChange={e => setEmail(e.target.value)}/>
+                        value={email_or_username} 
+                        placeholder = "Username or Email" 
+                        onChange={e => setName(e.target.value)}/>
                 </FormGroup>
             
                 <FormGroup>
@@ -30,23 +37,56 @@ export const Login = () => {
                         placeholder = "Password"
                         onChange={e => setPassword(e.target.value)}/>
                 </FormGroup>
+
+                <FormGroup>
+                    <div className="text-center">
+                    <Input 
+                        type="checkbox"
+                        value={is_contributor}
+                        onChange={e => setContributor(e.target.checked)}/>
+                        Contributor
+                    </div>                    
+                </FormGroup>
+                
+                
                 <Button onClick={async () =>{
-                     const login = {email, password};
+                     const login = {email_or_username, password, is_contributor};
                      console.log(JSON.stringify(login));
-                     const response = await fetch('/login', {
+                     const response = await fetch('http://127.0.0.1:5000/api/login', {
                          method: 'POST',
                          headers:{
                             'Content-Type': 'application/json'
                          },
                          body: JSON.stringify(login)
                      })
-                     if(response.ok)
-                     {
-                         console.log("response worked");
-                     }
-                    }}className="btn-lg btn-dark btn-block">Log in</Button>
+                     .then(response => {
+                         console.log(response.status);
+                         if (response.status === 201) {
+                            console.log("Successful Login"); 
+                            ref="/homepage";
+                            console.log(ref);
+                            history.push(ref);
+                            //redirect to home page
+                         }
+                         else if (response.status === 204) {
+                            console.log("Invalid Username or Password or Incorrect Permissions");
+                            ref="/";
+                            console.log(ref);
+                            history.push(ref);
+                            // reload login page
+                         }
+                     })
+                     .catch(error => console.log(error))
+                    
+                    }}
+                    //COMMENT HREF OUT  
+                    href={ref = "/homepage"}
+                    className="btn-lg btn-dark btn-block">
+                    Log in</Button>
+                    
             </Form>
         </div>);
+        
 
 }
 

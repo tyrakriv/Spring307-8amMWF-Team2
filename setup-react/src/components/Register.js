@@ -6,10 +6,18 @@ export const Register = () => {
     const [username, setUsername] = useState('');
     const [first_name, setFirst_name] = useState('');
     const [last_name, setLast_name] = useState('');
+    var ref = "/register";
     return (           
         <div> 
             <Form className="login-form">
-                
+                <div className="text-right">
+                <Button 
+                        href="/"
+                        className=" btn-dark text-right">
+                        Log in
+                </Button>
+
+                </div>              
                 <h1>
                 <span className="font-weight-bold">Register</span>
                 </h1>
@@ -56,18 +64,38 @@ export const Register = () => {
                         value={password} 
                         placeholder = "Password"
                         onChange={e => setPassword(e.target.value)}/>
-                </FormGroup>
+                </FormGroup>  
+          
                 <Button onClick={async () =>{
                      const register = {email, username, first_name, last_name, password};
-                     const response = await fetch('/register', {
+                     const response = await fetch('http://127.0.0.1:5000/api/register', {
                          method: 'POST',
                          headers:{
                             'Content-Type': 'application/json'
                          },
                          body: JSON.stringify(register)
                      })
+                     .then(response => { /*if status=409, then unsuccessful registration*/
+                         if (response.status === 409) {
+                             response.text().then((body) => {
+                                 console.log(body); 
+                                 ref = "/register";
+                                 /* body is either "Email already linked 
+                                                    to an account" or "Username Taken" */
+                             });
+                            }   
+                         else { /* successful creation of account */
+                             console.log("Successful Registration")
+                             ref = "/homepage";
+                             /* redirect to the home page or login page here */
+                         }
+                     })
 
-                    }}className="btn-lg btn-dark btn-block">Submit</Button>
+                    }}
+                    href={ref = "/homepage"}
+                    className="btn-lg btn-dark btn-block">
+                    Submit
+                    </Button>
             </Form>
         </div>);
 
