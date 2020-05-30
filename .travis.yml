@@ -6,6 +6,5 @@ cache: npm
 script:
 - npm test
 
-
 deploy:
  local_dir: build
