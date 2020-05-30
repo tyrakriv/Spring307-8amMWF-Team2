@@ -3,5 +3,9 @@ node_js:
 - 11.6.0
 cache: npm
 
+script:
+- npm CheckButton.test.js
+
+
 deploy:
  local_dir: build
