@@ -16,9 +16,11 @@ function Homepage() {
     // }
     return (
         <div>
-            <h1>Home page</h1>
             <Fragment>
-                <Tabs />
+                <h1 style={{
+                  top: 400
+                }}>Home page</h1>
+                <Tabs/>
              </Fragment>
         </div>
        /* <Fragment>

@@ -17,7 +17,7 @@ import Profile from './components/Profile';
 
 function App(){
     return (
-      <div>
+      <div className="login-form">
         <Switch>
           <Route exact path="/" component={Login}/>
           <Route path="/register" component={Register}/>
@@ -25,6 +25,7 @@ function App(){
           <Route path="/profile" component={Profile}/>
           <Route path="/journal/entry" component={JournalForm}/>
           <Route path="/journal" component={Journal}/>
+          <Route path="/survey" component={Survey}/>
         </Switch>
       </div>
 
