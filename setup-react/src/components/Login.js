@@ -23,7 +23,7 @@ export const Login = () => {
     }
     return(
         <div> 
-            <form className="login-form" onSubmit = {handleSubmit(onSubmit)}>
+            <Form className="login-form" onSubmit = {handleSubmit(onSubmit)}>
                 <h1>
                 <div className="text-right">
                     <Button
@@ -40,7 +40,7 @@ export const Login = () => {
                     <div className="field">
                     <input 
                         value={email_or_username} 
-                        ref = {register({required: true, validate: validateUserName})}
+                        ref = {register({required: true})}
                         name = "email_or_username"
                         placeholder = "Username or Email" 
                         onChange={e => setName(e.target.value)}/>
@@ -93,11 +93,11 @@ export const Login = () => {
                      .catch(error => console.log(error))
                     
                     }}
-                   // href = {ref1}
+                    //href = "/"
                     className="btn-lg btn-dark btn-block"
                     type = "submit">
                     Log in</Button>
-            </form>
+            </Form>
         </div>
     )
     /*return (           
