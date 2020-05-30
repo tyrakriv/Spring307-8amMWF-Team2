@@ -3,8 +3,5 @@ node_js:
 - 11.6.0
 cache: npm
 
-script:
-- npm run build
-
 deploy:
  local_dir: build
