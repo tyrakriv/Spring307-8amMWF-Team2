@@ -4,7 +4,7 @@ node_js:
 cache: npm
 
 script:
-- npm CheckButton.test.js
+- npm test
 
 
 deploy:

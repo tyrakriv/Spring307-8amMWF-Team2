@@ -8,11 +8,8 @@ Enzyme.configure({adapter: new Adapter()});
 
 describe('CheckButton', () => {
     it('show text', () => {
-        //arange
         const wrapper = shallow(<CheckButton />);
-        //act
         const text = wrapper.find('div div');
-        //assert
         expect(text.text()).toBe('Welcome');
     });
 });
