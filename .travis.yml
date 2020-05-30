@@ -1,4 +1,7 @@
 language: node_js
 node_js:
-  - "stable"
-script: gulp travis 
+- 11.6.0
+cache: npm
+
+script:
+- npm run build
