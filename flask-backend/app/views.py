@@ -87,7 +87,7 @@ def post_journal():
 
     return 'Successful Journal Input', 201
 
-@main.route('/api/journal', methods=['GET'])
+@main.route('/api/getJournals', methods=['GET'])
 def get_users_entries():
     journal_entries = current_user.journals.all()
     journals = []
