@@ -34,7 +34,7 @@ class TestCase(unittest.TestCase):
         self.assertFalse(user.is_contributor)
         user.make_contributor()
         self.assertTrue(user.is_contributor)
-        
+    #test 
     ## Data Base Tests are more so Integration Tests
     # def test_successful_registration(self):
     #     url = '/register'

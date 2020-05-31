@@ -1,15 +1,9 @@
-language: node_js
-node_js:
-- 11.6.0
-cache: npm
-
+language: python
+python:
+  - "2.7"
+  - "3.4"
+  - "3.5"
+  - "3.6"      # current default Python on Travis CI
+  - "3.7"
 script:
-- npm test
-- npm run build
-
-deploy:
- provider: pages
- local_dir: build
- skip-cleanup: true
- on:
-   branch: ameliabruscia-sprint5
+  - python3 flask-backend/test.py
