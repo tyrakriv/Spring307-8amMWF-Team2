@@ -94,6 +94,15 @@ def get_users_entries():
 
     return jsonify({'journal_entries' : journals})
 
+@main.route('/api/removeJournal', methods=['POST'])
+def remove_entry():
+    # JSON will have "username" and "entry_title" fields
+    user_data = request.get_json()
+    user = User.query.filter_by(username=user_data['username']).first()
+    entry_to_remove = Journal.query.filter_by(user_id=user.id).filter_by(title=user_data['entry_title']).first()
+    db.session.delete(entry_to_remove)
+    db.session.commit()
+    return "Successful Removal", 201
 
 @main.route('/getNewestUser', methods = ['GET']) 
 def get_newest_user():
