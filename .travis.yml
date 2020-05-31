@@ -4,6 +4,7 @@ node_js:
 cache: npm
 
 script:
+- cd setup-react
 - npm test
 - npm run build
 
