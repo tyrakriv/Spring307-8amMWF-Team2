@@ -7,9 +7,6 @@ python:
   - "3.6"      # current default Python on Travis CI
   - "3.7"
 
-install:
--pip3  install flask 
-
 script:
   - cd flask-backend
   - python3 test.py
