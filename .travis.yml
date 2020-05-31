@@ -8,5 +8,8 @@ python:
 # unit tests have dependency on flask
 install: 
   - pip install flask
+  - pip install Flask-SQLAlchemy
+  - pip install Flask-Migrate
+  - pip install flask-cors
 script: python flask-backend/test.py
   
