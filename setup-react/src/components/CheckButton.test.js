@@ -10,7 +10,6 @@ describe('CheckButton', () => {
     it('show text', () => {
         const wrapper = shallow(<CheckButton />);
         const text = wrapper.find('div div');
-        //assert
         expect(text.text()).toBe('Welcome');
     });
 });
