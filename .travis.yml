@@ -5,6 +5,7 @@ cache: npm
 
 script:
 - cd setup-react
+- vim package.json
 - npm test
 - npm run build
 
