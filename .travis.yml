@@ -7,5 +7,5 @@ python:
   - "3.7"
 install:
   - pip install flask
-script: python3 flask-backend/test.py
+script: python flask-backend/test.py
   
