@@ -17,9 +17,8 @@ def home():
 @main.route('/api/register', methods=['GET', 'POST'])
 def register_user():
     user_data = request.get_json()
-    # user = User.query
-    # if '@' in user_data['username']:
-    #     return "May not have '@' symbol in username", 409
+    #if '@' in user_data['username']:
+    #    return "May not have '@' symbol in username", 409
     # if email already exists in the db, registration error
     if User.query.filter_by(email=user_data['email']).first():
         return 'This email is already linked with an account', 409
@@ -33,7 +32,9 @@ def register_user():
     db.session.add(new_user)
     db.session.commit()
 
-    return 'Successful Registration', 201
+    user_json = new_user.get_user_json()
+    return jsonify({"user" : user_json}), 201
+    # return 'Successful Registration', 201
 
 """ ************************** Login View ************************************** """
 @main.route('/api/login', methods=['GET', 'POST'])
@@ -53,23 +54,15 @@ def login():
     
     # if the user does not exist or the password does not match the username/email, then return 401
     if user is None or not user.verify_password(password=user_data['password']):
-        print("\n\n\n")
-        print("invalid username or password")
-        print("\n\n\n")
         return 'Invalid username or password', 204
 
     # if the user does not have the correct privileges, return 401
     elif not authorized:
-        print("\n\n\n")
-        print("not authorized")
-        print("\n\n\n")
         return 'Invalid User-Privilege', 204
     else:
-        login_user(user)
-        print("\n\n\n")
-        print("Successful Login")
-        print("\n\n\n")
-        return 'Successful Login', 201
+        login_user(user, remember=True, force=True)
+        user_json = user.get_user_json()
+        return jsonify({"user" : user_json}), 201
 
 """ *************************** Logout View *********************************** """
 @main.route('/api/logout', methods=['GET'])
@@ -87,9 +80,14 @@ def post_journal():
 
     return 'Successful Journal Input', 201
 
-@main.route('/api/getJournals', methods=['GET'])
+@main.route('/api/getJournals', methods=['GET', 'POST'])
 def get_users_entries():
-    journal_entries = current_user.journals.all()
+    user_data = request.get_data()
+    print("\n\n\n")
+    print(user_data)
+    print("\n\n\n")
+    user = User.query.filter_by(username=user_data).first()
+    journal_entries = user.journals.all()
     journals = []
     for entry in journal_entries:
         journals.append({'title' : entry.title, 'body' : entry.body, 'date_created' : entry.date_created})
