@@ -4,5 +4,10 @@ node_js:
 cache: npm
 
 script:
+- npm test
 - npm run build
 
+deploy:
+ provider: pages
+ local_dir: build
+ skip-cleanup: true
