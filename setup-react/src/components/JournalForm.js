@@ -1,7 +1,7 @@
 import React, { Component, useState } from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
-export const Newjournal = () => {
+export const JournalForm = () => {
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
 
