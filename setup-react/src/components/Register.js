@@ -27,59 +27,73 @@ export const Register = () => {
                 <span className="font-weight-bold">Register</span>
                 </h1>
                 <FormGroup>
-                    <Label>Email</Label>
+                    <label>Email</label>
                     <h2></h2>
+                    <div className="field">
                     <input 
                         value={email} 
                         placeholder = "Email" 
                         name = "Email"
                         ref = {register({required: true})}
                         onChange={e => setEmail(e.target.value)}/>
+                    </div>
                     <div style={{fontSize: 11, color: "red"}}>{errors.Email && <p>Required</p>}</div>
                 </FormGroup>
 
                 <FormGroup>
-                    <Label>Username</Label>
+                    <label>Username</label>
                     <h2></h2>
+                    <div className="field">
                     <input
                         value={username} 
                         name = "username"
                         ref = {register({required: true})}
                         placeholder = "Username" 
                         onChange={e => setUsername(e.target.value)}/>
+                    </div>
+                    <div style={{fontSize: 11, color: "red"}}>{errors.username && <p>Required</p>}</div>
                 </FormGroup>
 
                 <FormGroup>
-                    <Label>First Name</Label>
+                    <label>First Name</label>
                     <h2></h2>
+                    <div className="field">
                     <input
                         value={first_name} 
                         placeholder = "First Name" 
                         name = "first_name"
                         ref = {register({required: true})}
                         onChange={e => setFirst_name(e.target.value)}/>
+                    </div>
+                    <div style={{fontSize: 11, color: "red"}}>{errors.first_name && <p>Required</p>}</div>
                 </FormGroup>
 
                 <FormGroup>
-                    <Label>Last Name</Label>
+                    <label>Last Name</label>
                     <h2></h2>
+                    <div className="field">
                     <input 
                         value={last_name} 
                         placeholder = "Last Name" 
                         name = "last_name"
                         ref = {register({required: true})}
                         onChange={e => setLast_name(e.target.value)}/>
+                    </div>
+                    <div style={{fontSize: 11, color: "red"}}>{errors.last_name && <p>Required</p>}</div>
                 </FormGroup>
             
                 <FormGroup>
                     <label>Password</label>
                     <h2></h2>
+                    <div className="field">
                     <input 
                         value={password} 
                         placeholder = "Password"
                         name = "password"
                         ref = {register({required: true})}
                         onChange={e => setPassword(e.target.value)}/>
+                    </div>
+                    <div style={{fontSize: 11, color: "red"}}>{errors.password && <p>Required</p>}</div>
                 </FormGroup>  
           
                 <Button onClick={async () =>{
@@ -91,25 +105,22 @@ export const Register = () => {
                          },
                          body: JSON.stringify(register)
                      })
-                     .then(response => { /*if status=409, then unsuccessful registration*/
+                     .then(response => {
                          if (response.status === 409) {
                              response.text().then((body) => {
                                  console.log(body); 
-                                 //ref = "/register";
-                                 /* body is either "Email already linked 
-                                                    to an account" or "Username Taken" */
+                        
                              });
                             }   
-                         else { /* successful creation of account */
+                         else { 
                              console.log("Successful Registration")
-                             //ref = "/homepage";
-                             /* redirect to the home page or login page here */
                          }
                      })
 
                     }}
                     //href={ref}
-                    className="btn-lg btn-dark btn-block">
+                    className="btn-lg btn-dark btn-block"
+                    type = "submit">
                     Submit
                     </Button>
             </Form>
