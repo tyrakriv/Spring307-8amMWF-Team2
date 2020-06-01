@@ -5,7 +5,6 @@ python:
   - "3.5"
   - "3.6"      # current default Python on Travis CI
   - "3.7"
-# unit tests have dependency on flask
 install: 
   - pip install flask
   - pip install Flask-SQLAlchemy
@@ -13,4 +12,3 @@ install:
   - pip install flask-cors
   - pip install flask-login
 script: python flask-backend/test.py
-  
