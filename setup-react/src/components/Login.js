@@ -1,11 +1,11 @@
 import React, { Component, useState } from "react";
 import {Button, Form, FormGroup, Label, Input} from 'reactstrap';
-import {useHistory} from 'react-router-dom'
+import {useHistory} from 'react-router-dom';
 export const Login = () => {
     const [email_or_username, setName] = useState('');
     const [password, setPassword] = useState('');
     const [is_contributor, setContributor] = useState(false);
-    var ref = "/";
+    // var ref = "/";
     const history = useHistory();
     return (           
         <div> 
@@ -51,7 +51,6 @@ export const Login = () => {
                 
                 <Button onClick={async () =>{
                      const login = {email_or_username, password, is_contributor};
-                     console.log(JSON.stringify(login));
                      const response = await fetch('http://127.0.0.1:5000/api/login', {
                          method: 'POST',
                          headers:{
@@ -59,19 +58,21 @@ export const Login = () => {
                          },
                          body: JSON.stringify(login)
                      })
-                     .then(response => {
-                         console.log(response.status);
+                     .then(response => {                  
+                         console.log(response.status);       
                          if (response.status === 201) {
-                            console.log("Successful Login"); 
-                            ref="/homepage";
-                            console.log(ref);
-                            history.push(ref);
-                            //redirect to home page
+                            response.json().then(data => { // store user in localStorage as token
+                                window.localStorage.setItem("user", JSON.stringify(data.user));
+                                //console.log(JSON.parse(window.localStorage.getItem("user"))); // prints correctly here
+                                console.log("Successful Login"); 
+                                const ref="/homepage";
+                                history.push(ref);
+                                //redirect to home page
+                            })
                          }
                          else if (response.status === 204) {
                             console.log("Invalid Username or Password or Incorrect Permissions");
-                            ref="/";
-                            console.log(ref);
+                            const ref="/";
                             history.push(ref);
                             // reload login page
                          }
@@ -80,14 +81,13 @@ export const Login = () => {
                     
                     }}
                     //COMMENT HREF OUT  
-                    href={ref = "/homepage"}
+                    //href={ref = "/homepage"}
                     className="btn-lg btn-dark btn-block">
                     Log in</Button>
                     
             </Form>
         </div>);
-        
-
+    
 }
 
 

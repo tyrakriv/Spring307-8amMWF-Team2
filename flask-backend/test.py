@@ -36,6 +36,7 @@ class TestCase(unittest.TestCase):
         self.assertTrue(user.is_contributor)
         
     ## Data Base Tests are more so Integration Tests
+    ## Will not Use
     # def test_successful_registration(self):
     #     url = '/register'
     #     mock_data = { 

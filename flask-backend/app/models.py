@@ -40,6 +40,17 @@ class User(UserMixin, db.Model):
         self.is_contributor = True
         #db.session.commit()
 
+    def get_user_json(self):
+        return {
+            "id" : self.id,
+            "username" : self.username,
+            "email" : self.email,
+            "first_name" : self.first_name,
+            "last_name" : self.last_name,
+            "date_created" : self.date_created,
+            "is_contributor" : self.is_contributor
+        }
+
     def __repr__(self):
         return '<User: {}>'.format(self.username)
 

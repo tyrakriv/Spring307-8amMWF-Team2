@@ -1,12 +1,15 @@
 import React, { Component, useState } from "react";
 import {Button, Form, FormGroup, Label, Input} from 'reactstrap';
+import {useHistory} from 'react-router-dom';
 export const Register = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [username, setUsername] = useState('');
     const [first_name, setFirst_name] = useState('');
     const [last_name, setLast_name] = useState('');
-    var ref = "/register";
+    // var ref = "/register";
+    var localStorage = window.localStorage;
+    const history = useHistory();
     return (           
         <div> 
             <Form className="login-form">
@@ -76,23 +79,29 @@ export const Register = () => {
                          body: JSON.stringify(register)
                      })
                      .then(response => { /*if status=409, then unsuccessful registration*/
-                         if (response.status === 409) {
-                             response.text().then((body) => {
-                                 console.log(body); 
-                                 ref = "/register";
-                                 /* body is either "Email already linked 
-                                                    to an account" or "Username Taken" */
-                             });
-                            }   
-                         else { /* successful creation of account */
-                             console.log("Successful Registration")
-                             ref = "/homepage";
-                             /* redirect to the home page or login page here */
-                         }
+                        console.log(response.status);
+                        if (response.status === 201) { 
+                            response.json().then(data => {//store user in localStrage as token
+                                localStorage.setItem('user', JSON.stringify(data.user));
+                                console.log("Successful Registration");
+                                console.log(JSON.parse(window.localStorage.getItem("user")));
+                                const ref = "/homepage";
+                                history.push(ref);
+                            })
+                            /* redirect to the home page or login page here */
+                        }   
+                        else if (response.status === 409) { /* successful creation of account */
+                            const ref = "/register";
+                            history.push(ref);
+                            /* body is either "Email already linked 
+                            to an account" or "Username Taken" */
+                            
+                        }
                      })
+                     .catch(error => console.log(error))
 
                     }}
-                    href={ref = "/homepage"}
+                    //href={ref = "/homepage"}
                     className="btn-lg btn-dark btn-block">
                     Submit
                     </Button>

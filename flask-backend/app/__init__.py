@@ -30,7 +30,7 @@ def create_app():
 
     login_manager.init_app(app)
     #login_manager.login_message = "You must be logged in to access this page."
-    login_manager.login_view = "login"
+    login_manager.login_view = "api/login"
     migrate = Migrate(app, db) # allows us to run migrations using Flask-Migrate
     CORS(app)
     #from app import models
