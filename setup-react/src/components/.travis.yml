@@ -1,0 +1,13 @@
+language: node_js
+node_js:
+- 11.6.0
+cache: npm
+
+script:
+- npm test
+- npm run build
+
+deploy:
+ provider: pages
+ local_dir: build
+ skip-cleanup: true
