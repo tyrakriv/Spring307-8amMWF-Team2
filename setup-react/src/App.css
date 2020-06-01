@@ -7,15 +7,32 @@
   height:100%;
   color: #444;
   line-height: 1.5;
-  margin:40px;
+  margin:50px;
   padding: 0;
 }
 
+.field{
+  height: 56px;
+  position: relative;
+  padding: 0px 0px;
+  border: none;
+  border-radius: 10px;
+  font-family: 'Gotham SSm A', 'Gotham SSm B', sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: normal;
+  background-color: transparent;
+  color: #282828;
+  outline: none;
+  -webkit-appearance: none;
+  
 .tabs{
   width: 150%;
   max-width: 90px;
   text-emphasis: bold;
 }
+
+
 .journal-form{
   width: 100%;
   /*max-width: 300px;*/

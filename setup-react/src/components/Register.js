@@ -1,5 +1,6 @@
 import React, { Component, useState } from "react";
 import {Button, Form, FormGroup, Label, Input} from 'reactstrap';
+import {useForm} from 'react-hook-form';
 import {useHistory} from 'react-router-dom';
 export const Register = () => {
     const [email, setEmail] = useState('');
@@ -7,19 +8,22 @@ export const Register = () => {
     const [username, setUsername] = useState('');
     const [first_name, setFirst_name] = useState('');
     const [last_name, setLast_name] = useState('');
+    const {register, handleSubmit, errors} = useForm();
+    const onSubmit = (data) => {
+        console.log(data);
+    };
     // var ref = "/register";
     var localStorage = window.localStorage;
     const history = useHistory();
     return (           
         <div> 
-            <Form className="login-form">
+            <Form className="login-form" onSubmit = {handleSubmit(onSubmit)}>
                 <div className="text-right">
                 <Button 
                         href="/"
                         className=" btn-dark text-right">
                         Log in
                 </Button>
-
                 </div>              
                 <h1>
                 <span className="font-weight-bold">Register</span>
@@ -27,17 +31,22 @@ export const Register = () => {
                 <FormGroup>
                     <Label>Email</Label>
                     <h2></h2>
-                    <Input 
+                    <input 
                         value={email} 
                         placeholder = "Email" 
+                        name = "Email"
+                        ref = {register({required: true})}
                         onChange={e => setEmail(e.target.value)}/>
+                    <div style={{fontSize: 11, color: "red"}}>{errors.Email && <p>Required</p>}</div>
                 </FormGroup>
 
                 <FormGroup>
                     <Label>Username</Label>
                     <h2></h2>
-                    <Input 
+                    <input
                         value={username} 
+                        name = "username"
+                        ref = {register({required: true})}
                         placeholder = "Username" 
                         onChange={e => setUsername(e.target.value)}/>
                 </FormGroup>
@@ -45,27 +54,33 @@ export const Register = () => {
                 <FormGroup>
                     <Label>First Name</Label>
                     <h2></h2>
-                    <Input 
+                    <input
                         value={first_name} 
                         placeholder = "First Name" 
+                        name = "first_name"
+                        ref = {register({required: true})}
                         onChange={e => setFirst_name(e.target.value)}/>
                 </FormGroup>
 
                 <FormGroup>
                     <Label>Last Name</Label>
                     <h2></h2>
-                    <Input 
+                    <input 
                         value={last_name} 
                         placeholder = "Last Name" 
+                        name = "last_name"
+                        ref = {register({required: true})}
                         onChange={e => setLast_name(e.target.value)}/>
                 </FormGroup>
             
                 <FormGroup>
                     <label>Password</label>
                     <h2></h2>
-                    <Input 
+                    <input 
                         value={password} 
                         placeholder = "Password"
+                        name = "password"
+                        ref = {register({required: true})}
                         onChange={e => setPassword(e.target.value)}/>
                 </FormGroup>  
           
@@ -101,7 +116,6 @@ export const Register = () => {
                      .catch(error => console.log(error))
 
                     }}
-                    //href={ref = "/homepage"}
                     className="btn-lg btn-dark btn-block">
                     Submit
                     </Button>

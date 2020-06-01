@@ -20,7 +20,6 @@ function Tabs() {
           top: 20
           //textAlign: "left"
         }}>Mindify</h1>
-
         <nav>
             <Button variant="primary" size="lg" href="/profile">Profile</Button>
             <h6></h6>
