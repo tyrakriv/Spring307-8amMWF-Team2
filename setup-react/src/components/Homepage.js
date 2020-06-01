@@ -17,8 +17,10 @@ function Homepage() {
     return (
         <div>
             <Fragment>
-               <Tabs/>
-                <h1 className="text-right">Home page</h1>
+                <h1 style={{
+                  top: 400
+                }}>Home page</h1>
+                <Tabs/>
              </Fragment>
         </div>
        /* <Fragment>
