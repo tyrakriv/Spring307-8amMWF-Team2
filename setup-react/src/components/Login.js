@@ -11,7 +11,7 @@ export const Login = () => {
    //const [emailError, setEmailError] = useState('Email Required');
    //<div style={{fontSize:  12, color: "red"}}>{emailError}</div>
     const [is_contributor, setContributor] = useState(false);
-    //var ref = "/";
+    var ref = "/";
     const history = useHistory();
     const {register, handleSubmit, errors} = useForm();
     const onSubmit = data => {
@@ -93,7 +93,7 @@ export const Login = () => {
                      .catch(error => console.log(error))
                     
                     }}
-                    //href = "/"
+                    href = "/homepage"
                     className="btn-lg btn-dark btn-block"
                     type = "submit">
                     Log in</Button>

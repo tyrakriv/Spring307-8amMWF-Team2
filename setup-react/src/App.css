@@ -26,6 +26,11 @@
   outline: none;
   -webkit-appearance: none;
 }
+
+.headers{
+  position: absolute;
+  left: 10px;
+}
   
 .tabs{
   width: 150%;
@@ -69,15 +74,15 @@ a{
   color: #430;
 }
 
-h1{
+/*h1{
   position: absolute;
-  left: 100px;
+  left: 10px;
 }
 
 h2{
   position: absolute;
   left: 100px;
-}
+}*/
 
 nav {
   position: absolute;

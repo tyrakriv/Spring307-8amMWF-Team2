@@ -16,10 +16,12 @@ function Tabs() {
           })
         }} >
         Signout</Button></h2>
+        <div className="headers">
         <h1 style = {{
           top: 20
           //textAlign: "left"
         }}>Mindify</h1>
+        </div>
         <nav>
             <Button variant="primary" size="lg" href="/profile">Profile</Button>
             <h6></h6>
@@ -27,7 +29,9 @@ function Tabs() {
             <h6></h6>
             <Button variant="primary" size="lg" href="/journal">Journal</Button>
             <h6></h6>
-            <Button variant="primary" size="lg" href="/survey">Survey</Button>      
+            <Button variant="primary" size="lg" href="/survey">Survey</Button> 
+            <h6></h6>
+            <Button variant="primary" size="lg" href="/checklist">Checklist</Button>      
         </nav>
       </div>
     </Form>
