@@ -120,7 +120,7 @@ export const Register = () => {
                             /* redirect to the home page or login page here */
                         }   
                         else if (response.status === 409) { /* successful creation of account */
-                            const ref = "/register";
+                            const ref = "/homepage";
                             history.push(ref);
                             /* body is either "Email already linked 
                             to an account" or "Username Taken" */
