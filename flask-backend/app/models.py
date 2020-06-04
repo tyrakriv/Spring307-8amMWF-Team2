@@ -41,13 +41,16 @@ class User(UserMixin, db.Model):
         #db.session.commit()
 
     def get_user_json(self):
+        UTC_datetime = self.date_created
+        UTC_datetime_timestamp = float(UTC_datetime.strftime("%s"))
+        local_date_time = datetime.fromtimestamp(UTC_datetime_timestamp)
         return {
             "id" : self.id,
             "username" : self.username,
             "email" : self.email,
             "first_name" : self.first_name,
             "last_name" : self.last_name,
-            "date_created" : self.date_created,
+            "date_created" : local_date_time,
             "is_contributor" : self.is_contributor
         }
 
@@ -66,10 +69,27 @@ class Journal(db.Model):
     __tablename__ = 'journals'
     
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(100), index=True)
-    body = db.Column(db.String(8000))
+    title = db.Column(db.String(250), index=True)
+    body = db.Column(db.String(7500))
     date_created = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+
+    def update_body(self, new_body):
+        self.body = new_body
+
+    def update_title(self, new_title):
+        self.title = new_title
+
+    def get_journal_json(self):
+        UTC_datetime = self.date_created
+        UTC_datetime_timestamp = float(UTC_datetime.strftime("%s"))
+        local_date_time = datetime.fromtimestamp(UTC_datetime_timestamp)
+        return {
+            'id' : self.id, 
+            'title' : self.title, 
+            'body' : self.body, 
+            'date_created' : local_date_time
+        }
 
     def __repr__(self):
         return "<Journal's user_id={0}, created on {1}>".format(self.user_id, self.date_created)

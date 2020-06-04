@@ -71,11 +71,21 @@ def logout():
     return 'Successful Logout', 201
 
 """ **************************** Journal Views ******************************* """
-@main.route('/api/journal', methods=['POST'])
+@main.route('/api/postJournal', methods=['POST'])
 def post_journal():
     journal_data = request.get_json()
-    new_entry = Journal(title=journal_data['title'], body=journal_data['body'], user_id=current_user.id)
+    new_entry = Journal(title=journal_data['title'], body=journal_data['body'], user_id=journal_data['user_id'])
     db.session.add(new_entry)
+    db.session.commit()
+
+    return 'Successful Journal Input', 201
+
+@main.route('/api/editJournal', methods=['POST'])
+def edit_journal():
+    journal_data = request.get_json()
+    entry = Journal.query.get(journal_data['entry_id'])
+    entry.update_title(journal_data['title'])
+    entry.update_body(journal_data['body'])
     db.session.commit()
 
     return 'Successful Journal Input', 201
@@ -83,14 +93,11 @@ def post_journal():
 @main.route('/api/getJournals', methods=['GET', 'POST'])
 def get_users_entries():
     user_data = request.get_data()
-    print("\n\n\n")
-    print(user_data)
-    print("\n\n\n")
     user = User.query.filter_by(username=user_data).first()
     journal_entries = user.journals.all()
     journals = []
     for entry in journal_entries:
-        journals.append({'title' : entry.title, 'body' : entry.body, 'date_created' : entry.date_created})
+        journals.append(entry.get_journal_json())
 
     return jsonify({'journal_entries' : journals})
 

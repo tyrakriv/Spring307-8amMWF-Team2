@@ -13,7 +13,9 @@ import Tabs from './components/Tabs';
 import Journal from './components/Journal';
 import Survey from './components/Survey';
 import Profile from './components/Profile';
-
+import Todos from './components/Todos';
+import Quote from './components/Quote';
+import QuotePage from './components/QuotePage';
 
 function App(){
     return (
@@ -26,6 +28,7 @@ function App(){
           <Route path="/journal/entry" component={JournalForm}/>
           <Route path="/journal" component={Journal}/>
           <Route path="/survey" component={Survey}/>
+          <Route path="/Checklist" component={Todos}/>
         </Switch>
       </div>
 
