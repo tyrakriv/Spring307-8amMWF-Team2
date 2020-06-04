@@ -1,10 +1,11 @@
 import React, { Component, useState } from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
-import { useLocation, useHistory } from 'react-router-dom';
+import { useLocation, useHistory , Redirect } from 'react-router-dom';
 import { TextArea } from 'semantic-ui-react';
 import {useForm} from 'react-hook-form';
 
 export const JournalForm = () => {
+    
     const {register, handleSubmit, errors} = useForm();
 
      const onSubmit = data => {
@@ -17,11 +18,9 @@ export const JournalForm = () => {
     const [entry_id, setEntry_id] = useState(location.state.entry_id);
     const [user_id, setUser_id] = useState(location.state.user_id);
     var url = "";
-    console.log(location);
-    console.log(title);
-    console.log(body);
-    console.log(entry_id);
-    console.log(user_id);
+    if (JSON.parse(window.localStorage.getItem("user")) == null) {
+        return <Redirect to="/" />;
+    }
     return (
         <div>
             <Button 

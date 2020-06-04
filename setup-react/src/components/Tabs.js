@@ -13,6 +13,7 @@ function Tabs() {
           }).then(response => {
             console.log("Logged Out");
             window.localStorage.removeItem("user");
+            console.log(JSON.parse(window.localStorage.getItem("user")));
           }).catch(error => { 
             console.log("logout error", error);
           })

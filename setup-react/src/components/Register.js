@@ -1,7 +1,7 @@
 import React, { Component, useState } from "react";
 import {Button, Form, FormGroup, Label, Input} from 'reactstrap';
 import {useForm} from 'react-hook-form';
-import {useHistory} from 'react-router-dom';
+import {useHistory, Redirect} from 'react-router-dom';
 export const Register = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -15,6 +15,9 @@ export const Register = () => {
     // var ref = "/register";
     var localStorage = window.localStorage;
     const history = useHistory();
+    if (JSON.parse(window.localStorage.getItem("user")) != null) {
+        return <Redirect to="/homepage" />;
+    }
     return (           
         <div> 
             <Form className="login-form" onSubmit = {handleSubmit(onSubmit)}>

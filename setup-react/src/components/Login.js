@@ -1,6 +1,6 @@
 import React, { Component, useState } from "react";
 import {Button, Form, FormGroup, Label, Input} from 'reactstrap';
-import {useHistory} from 'react-router-dom';
+import {useHistory, Redirect} from 'react-router-dom';
 import {useForm} from 'react-hook-form';
 
 
@@ -20,6 +20,9 @@ export const Login = () => {
 
     const validateUserName = async (value) => {
 
+    }
+    if (JSON.parse(window.localStorage.getItem("user")) != null) {
+        return <Redirect to="/homepage" />;
     }
     return(
         <div> 
