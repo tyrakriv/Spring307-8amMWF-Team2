@@ -86,16 +86,17 @@ export const Login = () => {
                      .then(response => {
                          console.log(response.status);
                          if (response.status === 201) {
-                            console.log("Successful Login"); 
-                            const ref="/homepage";
-                            console.log(ref);
-                            history.push(ref);
-                            //redirect to home page
+                            response.json().then(data => { // store user in localStorage as token
+                                window.localStorage.setItem("user", JSON.stringify(data.user));
+                                console.log("Successful Login"); 
+                                const ref="/homepage";
+                                history.push(ref);
+                                //redirect to home page
+                            })
                          }
                          else if (response.status === 204) {
                             console.log("Invalid Username or Password or Incorrect Permissions");
                             const ref="/";
-                            console.log(ref);
                             history.push(ref);
                             // reload login page
                          }
