@@ -93,14 +93,15 @@ export const Login = () => {
                     }}
                     //href = "/"
                     className="btn-lg btn-dark btn-block"
-                    type = "submit" className="btn-lg btn-dark btn-block">
-                    {/* COMMENT HREF OUT  
-                    href={ref = "/homepage"} */}
-                    
+                    type = "submit">
+                    //COMMENT HREF OUT  
+                    //href={ref = "/homepage"}
+                    className="btn-lg btn-dark btn-block">
                     Log in</Button>
             </Form>
         </div>
-    );
+    )
+        </div>);
     
 }
 
