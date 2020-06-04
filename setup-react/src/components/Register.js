@@ -20,8 +20,8 @@ export const Register = () => {
             <Form className="login-form" onSubmit = {handleSubmit(onSubmit)}>
                 <div className="text-right">
                 <Button 
-                        //CHANGE BACK TO "/" AFTER EDITING HOME PAGES (SURVEY)
-                        href="/homepage"
+                        //CHANGE THIS TO GO DIRECT TO HOMEPAGE BY LOGIN BUTTON
+                        href="/"
                         className=" btn-dark text-right">
                         Log in
                 </Button>

@@ -1,20 +1,10 @@
-import React, { Component } from 'react'
-
-export class Quoteitem extends Component {
-    render() {
-        return (
-            <div style = {{
-                color: 'green', 
-                paddingTop: 50,
-                paddingLeft: 200,
-                paddingRight: 200,
-                textAlign: 'center',
-                fontSize: 20,
-                //font: 'fantasy'
-            }}>You Matter.
-            </div>
-        )
-    }
-}
-
-export default Quoteitem
+import React from 'react';
+  function Question(props) {
+    return (
+      <h2 className="question">{props.content}</h2>
+    );
+  }
+  Question.propTypes = {
+    content: React.PropTypes.string.isRequired
+  };
+  export default Question;
