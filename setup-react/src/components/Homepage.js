@@ -2,8 +2,8 @@ import React, { Component, Fragment } from 'react';
 import Tabs from './Tabs';
 import QuotePage from './QuotePage';
 import {Button, Form, FormGroup, Label, Input} from 'reactstrap';
-const check = true;
-//const check = JSON.parse(window.localStorage.getItem("user")).is_contributor;
+//const check = true;
+
 //var oldQuote = "You Matter";
 export class Homepage extends Component {
   constructor(props) {
@@ -24,6 +24,7 @@ export class Homepage extends Component {
     event.preventDefault();
   }
    addQuote(){
+      const check = JSON.parse(window.localStorage.getItem("user")).is_contributor;
         if(check)
         {
         return(
