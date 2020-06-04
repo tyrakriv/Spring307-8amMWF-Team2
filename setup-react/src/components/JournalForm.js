@@ -2,8 +2,14 @@ import React, { Component, useState } from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { useLocation, useHistory } from 'react-router-dom';
 import { TextArea } from 'semantic-ui-react';
+import {useForm} from 'react-hook-form';
 
 export const JournalForm = () => {
+    const {register, handleSubmit, errors} = useForm();
+
+     const onSubmit = data => {
+        console.log(data);
+    };
     const location = useLocation();
     const history = useHistory();
     const [title, setTitle] = useState(location.state.title);
@@ -25,15 +31,18 @@ export const JournalForm = () => {
                     Cancel 
                 </Button>
             
-            <Form className="journal-form">
+            <Form className="journal-form" onSubmit = {handleSubmit(onSubmit)}>
                 
                 <FormGroup>
                     <Label>Title</Label>
-                    <Input
+                    <input
                         value={title}
                         maxLength={100}
+                        ref = {register({required: true})}
+                        name = "title"
                         onChange={e => setTitle(e.target.value)}
                         />
+                        <div style={{fontSize: 11, color: "red"}}>{errors.title && <p>Required</p>}</div>
                 </FormGroup>
 
                 <FormGroup>
