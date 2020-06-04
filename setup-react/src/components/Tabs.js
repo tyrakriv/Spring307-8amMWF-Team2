@@ -5,7 +5,7 @@ function Tabs() {
   return (
     <Form>
       <div>
-      <h2 className="text-right"><Button href="/" onClick={async () =>{
+      <h2 style={{top : 50, right: 150}} className="text-right"><Button href="/" onClick={async () =>{
           const response = await fetch('/api/logout', {
             method: 'GET'
           }).then(response => {

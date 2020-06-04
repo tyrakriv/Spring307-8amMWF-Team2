@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Tabs from './Tabs';
-import { List, Header} from 'semantic-ui-react';
+import { List, Header, Container} from 'semantic-ui-react';
 import { Button } from 'reactstrap';
+import {Link} from "react-router-dom";
 
-const removeEntry = async entry_title => {
+const removeEntry = async (entry_title) => {
     const to_upload = {
         username : JSON.parse(window.localStorage.getItem("user")).username,
         entry_title : entry_title
@@ -17,6 +18,7 @@ const removeEntry = async entry_title => {
     })
     .then(response => {
         if (response.ok) {
+            window.location.reload(false);
             console.log("Successfully Removed");
         }
     })
@@ -29,14 +31,31 @@ const removeEntry = async entry_title => {
 }
 
 const Entries = ({ entries }) => {
+    console.log(entries);
+    const sorted_entries = entries.sort(function(a, b){
+        return new Date(b.date_created) - new Date(a.date_created);
+    });
+    console.log(sorted_entries);
     return (
         <List>
-            {entries.map(entry => {
+            {sorted_entries.map(entry => {
                 return (
                     <List.Item key={entry.title}>
                         <Header>{entry.title} </Header>
+                        <h3> {entry.body} </h3>
                         <h2> {entry.date_created} </h2>
-                        <Button className="btn-dark text-right"> edit </Button>
+                        <Link styel={{right : 150}} to={
+                            {
+                                pathname: '/journal/entry',
+                                state: {
+                                    title: entry.title, 
+                                    body: entry.body,
+                                    entry_id: entry.id,
+                                    user_id: JSON.parse(window.localStorage.getItem("user")).id
+                                }
+                            }
+                            }><Button className="btn-dark text-right"> edit </Button>
+                        </Link>
                         <Button onClick={() => removeEntry(entry.title)} className="btn-dark text-right"> delete </Button>
                     </List.Item>
                 )
@@ -49,7 +68,6 @@ function Journal() {
     const [entries, setEntries] = useState([]);
     const check = true;
     const user = JSON.parse(window.localStorage.getItem("user"));
-    console.log(user.username);
     useEffect(() => {
       fetch('/api/getJournals', {
           method: 'POST',
@@ -66,11 +84,23 @@ function Journal() {
     return (
         <div>
             <Tabs/>
-            <h1 style={{
-                  top: 380
-                }}className="text-right">Journal page</h1>
-
-            <Entries entries={entries} />
+            <Container style = {{marginTop : 380}}>
+                <h1 className="text-right">Journals: </h1>
+                <Link styel={{right : 150}} to={
+                    {
+                        pathname: '/journal/entry',
+                        state: {
+                            title: '', 
+                            body: '',
+                            entry_id: 0,
+                            user_id: JSON.parse(window.localStorage.getItem("user")).id
+                        }
+                    }
+                }><Button > New Journal </Button>
+                </Link>
+                <Entries entries={entries}/>
+            </Container>
+            
         </div>
     )
 }
