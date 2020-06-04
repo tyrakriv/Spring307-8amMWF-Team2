@@ -107,7 +107,6 @@ export const Login = () => {
                     type = "submit" className="btn-lg btn-dark btn-block">
                     {/* COMMENT HREF OUT  
                     href={ref = "/homepage"} */}
-                    
                     Log in</Button>
             </Form>
         </div>
