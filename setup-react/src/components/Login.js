@@ -103,7 +103,6 @@ export const Login = () => {
                      .catch(error => console.log(error))
                     
                     }}
-                    href = "/homepage"
                     className="btn-lg btn-dark btn-block"
                     type = "submit" className="btn-lg btn-dark btn-block">
                     {/* COMMENT HREF OUT  
