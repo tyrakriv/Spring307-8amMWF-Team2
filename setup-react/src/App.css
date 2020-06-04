@@ -29,7 +29,8 @@
 
 .headers{
   position: absolute;
-  left: 10px;
+  left: 100px;
+  padding: 0px;
 }
   
 .tabs{

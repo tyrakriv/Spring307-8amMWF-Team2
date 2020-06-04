@@ -61,6 +61,16 @@ export const Login = () => {
                     </div>  
                     <div style={{fontSize: 11, color: "red"}}>{errors.Password && <p>Required</p>}</div>          
                 </FormGroup>
+
+                <FormGroup>
+                    <div className="text-center">
+                    <Input
+                        type="checkbox"
+                        value={is_contributor}
+                        onChange={e => setContributor(e.target.checked)}/>
+                        Contributor
+                    </div>
+                </FormGroup>
                 
                 <Button onClick={async () =>{
                     //handleSubmit();
@@ -93,7 +103,6 @@ export const Login = () => {
                      .catch(error => console.log(error))
                     
                     }}
-                    href = "/homepage"
                     className="btn-lg btn-dark btn-block"
                     type = "submit">
                     Log in</Button>

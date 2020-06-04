@@ -1,7 +1,9 @@
 import React from 'react';
 import {Button, Form, Label} from 'reactstrap';
+//const check = JSON.parse(window.localStorage.getItem("user")).is_contributor;
 
 function Tabs() {
+
   return (
     <Form>
       <div>
@@ -31,7 +33,7 @@ function Tabs() {
             <h6></h6>
             <Button variant="primary" size="lg" href="/survey">Survey</Button> 
             <h6></h6>
-            <Button variant="primary" size="lg" href="/checklist">Checklist</Button>      
+            <Button variant="primary" size="lg" href="/checklist">Checklist</Button>  
         </nav>
       </div>
     </Form>
