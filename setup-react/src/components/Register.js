@@ -13,6 +13,7 @@ export const Register = () => {
         console.log(data);
     };
     // var ref = "/register";
+    var ref = "/homepage";
     var localStorage = window.localStorage;
     const history = useHistory();
     return (           
@@ -35,7 +36,7 @@ export const Register = () => {
                         value={email} 
                         placeholder = "Email" 
                         name = "Email"
-                        ref = {register({required: true})}
+                        //ref = {register({required: true})}
                         onChange={e => setEmail(e.target.value)}/>
                     <div style={{fontSize: 11, color: "red"}}>{errors.Email && <p>Required</p>}</div>
                 </FormGroup>
@@ -46,7 +47,7 @@ export const Register = () => {
                     <input
                         value={username} 
                         name = "username"
-                        ref = {register({required: true})}
+                        //ref = {register({required: true})}
                         placeholder = "Username" 
                         onChange={e => setUsername(e.target.value)}/>
                 </FormGroup>
@@ -58,7 +59,7 @@ export const Register = () => {
                         value={first_name} 
                         placeholder = "First Name" 
                         name = "first_name"
-                        ref = {register({required: true})}
+                        //ref = {register({required: true})}
                         onChange={e => setFirst_name(e.target.value)}/>
                 </FormGroup>
 
@@ -69,7 +70,7 @@ export const Register = () => {
                         value={last_name} 
                         placeholder = "Last Name" 
                         name = "last_name"
-                        ref = {register({required: true})}
+                        //ref = {register({required: true})}
                         onChange={e => setLast_name(e.target.value)}/>
                 </FormGroup>
             
@@ -80,7 +81,7 @@ export const Register = () => {
                         value={password} 
                         placeholder = "Password"
                         name = "password"
-                        ref = {register({required: true})}
+                        //ref = {register({required: true})}
                         onChange={e => setPassword(e.target.value)}/>
                 </FormGroup>  
           
@@ -106,7 +107,7 @@ export const Register = () => {
                             /* redirect to the home page or login page here */
                         }   
                         else if (response.status === 409) { /* successful creation of account */
-                            const ref = "/homepage";
+                            //const ref = "/register";
                             history.push(ref);
                             /* body is either "Email already linked 
                             to an account" or "Username Taken" */
