@@ -103,12 +103,15 @@ export const Login = () => {
                      .catch(error => console.log(error))
                     
                     }}
-                    className="btn-lg btn-dark btn-block"
-                    type = "submit">
+                    type = "submit" className="btn-lg btn-dark btn-block">
+                    {/* COMMENT HREF OUT  
+                    href={ref = "/homepage"} */}
+                    
                     Log in</Button>
             </Form>
         </div>
-    )
+    );
+    
 }
 
 
