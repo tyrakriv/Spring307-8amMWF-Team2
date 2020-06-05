@@ -93,10 +93,10 @@ export const Login = () => {
                             //redirect to home page
                          }
                          else if (response.status === 204) {
-                            console.log("Invalid Username or Password or Incorrect Permissions");
-                            const ref="/";
-                            console.log(ref);
-                            history.push(ref);
+                            return(<div style={{fontSize: 11, color: "red"}}>{<p>Invalid username or password OR Incorrect Permissions</p>}</div>);
+                            //const ref="/";
+                            //console.log(ref);
+                            //history.push(ref);
                             // reload login page
                          }
                      })
