@@ -20,6 +20,7 @@ export const Register = () => {
             <Form className="login-form" onSubmit = {handleSubmit(onSubmit)}>
                 <div className="text-right">
                 <Button 
+                        //CHANGE THIS TO GO DIRECT TO HOMEPAGE BY LOGIN BUTTON
                         href="/"
                         className=" btn-dark text-right">
                         Log in
@@ -123,7 +124,6 @@ export const Register = () => {
                         else if (response.status === 409) { /* successful creation of account */
                             const ref = "/register";
                             return(<div style={{fontSize: 11, color: "red"}}>{<p>Username or Password Taken</p>}</div>);
-                            //history.push(ref);
                             /* body is either "Email already linked 
                             to an account" or "Username Taken" */
                             
