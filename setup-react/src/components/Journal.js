@@ -87,8 +87,8 @@ function Journal() {
     return (
         <div>
             <Tabs/>
-            <Container style = {{marginTop : 380}}>
-                <h1 className="text-right">Journals: </h1>
+            <div className="journal-list">
+                <h1>Journals: </h1>
                 <Link styel={{right : 150}} to={
                     {
                         pathname: '/journal/entry',
@@ -102,7 +102,7 @@ function Journal() {
                 }><Button > New Journal </Button>
                 </Link>
                 <Entries entries={entries}/>
-            </Container>
+            </div>
             
         </div>
     )

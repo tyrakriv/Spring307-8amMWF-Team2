@@ -19,6 +19,9 @@ def register_user():
     user_data = request.get_json()
     #if '@' in user_data['username']:
     #    return "May not have '@' symbol in username", 409
+    if user_data['email'] == '' or user_data['username'] == '' or user_data['first_name'] == '' or user_data['last_name'] == '' or user_data['password'] == '':
+        return 'All fields must be filled', 204
+
     # if email already exists in the db, registration error
     if User.query.filter_by(email=user_data['email']).first():
         return 'This email is already linked with an account', 409

@@ -4,40 +4,38 @@ import {Button, Form, Label} from 'reactstrap';
 
 function Tabs() {
 
-  return (
-    <Form>
-      <div>
-      <h2 style={{top : 50, right: 150}} className="text-right"><Button href="/" onClick={async () =>{
-          const response = await fetch('/api/logout', {
-            method: 'GET'
-          }).then(response => {
-            console.log("Logged Out");
-            window.localStorage.removeItem("user");
-            console.log(JSON.parse(window.localStorage.getItem("user")));
-          }).catch(error => { 
-            console.log("logout error", error);
-          })
-        }} >
-        Signout</Button></h2>
-        <div className="headers">
-        <h1 style = {{
-          top: 20
-          //textAlign: "left"
-        }}>Mindify</h1>
+    return (
+        <div>
+            <div className="signout-btn">
+                <Button href="/" onClick={async () =>{
+                    const response = await fetch('/api/logout', {
+                        method: 'GET'
+                    })
+                    .then(response => {
+                        console.log("Logged Out");
+                        window.localStorage.removeItem("user");
+                    }).catch(error => { 
+                        console.log("logout error", error);
+                    })
+                }} className="signout-btn" >Signout</Button>
+            </div>
+            <div className="headers"> 
+                <h1>Mindify</h1>
+            </div>
+            <div className="tabs">
+                <nav>
+                    <Button variant="primary" size="lg" href="/profile">Profile</Button>
+                    <h6></h6>
+                    <Button variant="primary" size="lg" href="/homepage">Home</Button>
+                    <h6></h6>
+                    <Button variant="primary" size="lg" href="/journal">Journal</Button>
+                    <h6></h6>
+                    <Button variant="primary" size="lg" href="/survey">Survey</Button> 
+                    <h6></h6>
+                    <Button variant="primary" size="lg" href="/checklist">Checklist</Button>  
+                </nav>
+            </div>
         </div>
-        <nav>
-            <Button variant="primary" size="lg" href="/profile">Profile</Button>
-            <h6></h6>
-            <Button variant="primary" size="lg" href="/homepage">Home</Button>
-            <h6></h6>
-            <Button variant="primary" size="lg" href="/journal">Journal</Button>
-            <h6></h6>
-            <Button variant="primary" size="lg" href="/survey">Survey</Button> 
-            <h6></h6>
-            <Button variant="primary" size="lg" href="/checklist">Checklist</Button>  
-        </nav>
-      </div>
-    </Form>
   )
 }
 
