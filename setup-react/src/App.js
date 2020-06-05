@@ -19,7 +19,7 @@ import QuotePage from './components/QuotePage';
 
 function App(){
     return (
-      <div className="login-form">
+      <div>
         <Switch>
           <Route exact path="/" component={Login}/>
           <Route path="/register" component={Register}/>

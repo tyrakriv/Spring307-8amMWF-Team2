@@ -1,7 +1,7 @@
 import React, { Component, useState } from "react";
 import {Button, Form, FormGroup, Label, Input} from 'reactstrap';
 import {useForm} from 'react-hook-form';
-import {useHistory} from 'react-router-dom';
+import {useHistory, Redirect} from 'react-router-dom';
 export const Register = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -15,6 +15,9 @@ export const Register = () => {
     // var ref = "/register";
     var localStorage = window.localStorage;
     const history = useHistory();
+    if (JSON.parse(window.localStorage.getItem("user")) != null) {
+        return <Redirect to="/homepage" />;
+    }
     return (           
         <div> 
             <Form className="login-form" onSubmit = {handleSubmit(onSubmit)}>
@@ -122,8 +125,7 @@ export const Register = () => {
                             /* redirect to the home page or login page here */
                         }   
                         else if (response.status === 409) { /* successful creation of account */
-                            const ref = "/register";
-                            return(<div style={{fontSize: 11, color: "red"}}>{<p>Username or Password Taken</p>}</div>);
+                            return(<div style={{fontSize: 11, color: "red"}}>{<p>Username or Email Taken</p>}</div>);
                             /* body is either "Email already linked 
                             to an account" or "Username Taken" */
                             

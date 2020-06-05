@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Tabs from './Tabs';
 import { List, Header, Container} from 'semantic-ui-react';
 import { Button } from 'reactstrap';
-import {Link} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 
 const removeEntry = async (entry_title) => {
     const to_upload = {
@@ -61,7 +61,7 @@ const Entries = ({ entries }) => {
                 )
             })}
         </List>
-    )
+    ) 
 }
 
 function Journal() {
@@ -74,18 +74,21 @@ function Journal() {
           headers:{
               'Content-Type': 'text/plain'
           },
-          body: user.username
+          body: user == null? " " : user.username
       }).then(response => 
         response.json().then(data => {
           setEntries(data.journal_entries);
         })
       );
     }, [])
+    if (JSON.parse(window.localStorage.getItem("user")) == null) {
+        return <Redirect to="/" />;
+    }
     return (
         <div>
             <Tabs/>
-            <Container style = {{marginTop : 380}}>
-                <h1 className="text-right">Journals: </h1>
+            <div className="journal-list">
+                <h1>Journals: </h1>
                 <Link styel={{right : 150}} to={
                     {
                         pathname: '/journal/entry',
@@ -99,7 +102,7 @@ function Journal() {
                 }><Button > New Journal </Button>
                 </Link>
                 <Entries entries={entries}/>
-            </Container>
+            </div>
             
         </div>
     )

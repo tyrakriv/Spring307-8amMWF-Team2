@@ -3,7 +3,7 @@ import TodoItem from './TodoItem';
 import PropTypes from 'prop-types';
 import {Button, Form, FormGroup, Label, Input} from 'reactstrap';
 import Tabs from './Tabs';
-
+import { Redirect } from 'react-router-dom';
 
 class Todos extends Component{
   constructor(props){
@@ -44,6 +44,9 @@ class Todos extends Component{
     });
   }
   render() { 
+    if (JSON.parse(window.localStorage.getItem("user")) == null) {
+      return <Redirect to="/" />;
+    } 
     return( 
         <div>
           <Tabs/>

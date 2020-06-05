@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import Tabs from './Tabs';
 import QuotePage from './QuotePage';
 import {Button, Form, FormGroup, Label, Input} from 'reactstrap';
+import { useHistory, Redirect } from 'react-router-dom';
 //const check = true;
 
 //var oldQuote = "You Matter";
@@ -43,15 +44,22 @@ export class Homepage extends Component {
     }
 
     render() {
-        return (
-          
+        if (JSON.parse(window.localStorage.getItem("user")) == null) {
+          return <Redirect to="/" />;
+        }
+        else {
+          return (
+            
             <div> 
               <Tabs/>
-            {this.addQuote()}
-            <h1>"You Matter"</h1>
-            <h1>Homepage</h1>
+              {this.addQuote()}
+              <h1>"You Matter"</h1>
+              <h1>Homepage</h1>
             </div>
-        )
+          )
+        }
+        
+      
     }
 
 }

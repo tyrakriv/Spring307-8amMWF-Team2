@@ -1,8 +1,12 @@
 import React from 'react';
 import Tabs from './Tabs';
+import { Redirect } from 'react-router-dom';
 import QuizBee from './QuizBee';
 
 function Survey() {
+    if (JSON.parse(window.localStorage.getItem("user")) == null) {
+        return <Redirect to="/" />;
+    }
     return (
         <div> 
             <Tabs/>
