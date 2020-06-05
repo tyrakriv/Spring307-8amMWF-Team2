@@ -9,6 +9,9 @@ function Survey() {
             <h1 style={{
                 top: 380
             }} className="text-right">Survey page</h1>
+            <h2 style={{
+                top:425
+            }}>Fill out all questions for a response!</h2>
             <QuizBee/>
             
         </div>

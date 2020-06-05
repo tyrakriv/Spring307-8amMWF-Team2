@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Quoteitem from './Quoteitem';
 import {Button, Form, Label} from 'reactstrap';
 import Tabs from './Tabs';
 import Profile from './Profile';

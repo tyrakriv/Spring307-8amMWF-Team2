@@ -37,7 +37,7 @@ class QuizBee extends Component{
     render() {
       return (
         <div style={{
-          marginTop: 450
+          marginTop: 520
           }} className = "container">
           <div className="title">Survey</div>
             {this.state.questionBank.length > 0 &&
