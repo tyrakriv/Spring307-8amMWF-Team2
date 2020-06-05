@@ -23,6 +23,7 @@ export const Register = () => {
             <Form className="login-form" onSubmit = {handleSubmit(onSubmit)}>
                 <div className="text-right">
                 <Button 
+                        //CHANGE THIS TO GO DIRECT TO HOMEPAGE BY LOGIN BUTTON
                         href="/"
                         className=" btn-dark text-right">
                         Log in
@@ -103,6 +104,7 @@ export const Register = () => {
           
                 <Button onClick={async () =>{
                      const register = {email, username, first_name, last_name, password};
+
                      const response = await fetch('http://127.0.0.1:5000/api/register', {
                          method: 'POST',
                          headers:{
@@ -123,11 +125,13 @@ export const Register = () => {
                             /* redirect to the home page or login page here */
                         }   
                         else if (response.status === 409) { /* successful creation of account */
-                            const ref = "/register";
-                            history.push(ref);
+                            return(<div style={{fontSize: 11, color: "red"}}>{<p>Username or Email Taken</p>}</div>);
                             /* body is either "Email already linked 
                             to an account" or "Username Taken" */
                             
+                        }
+                        else if (response.status === 204){
+                            return(<div style={{fontSize: 11, color: "red"}}>{<p>All Fields Required</p>}</div>);
                         }
                      })
                      .catch(error => console.log(error))

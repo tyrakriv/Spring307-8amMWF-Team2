@@ -1,4 +1,3 @@
-
 import React, {useEffect, useState, Component} from 'react';
 import './App.css';
 import {NewUserInfo} from './components/NewUserInfo';
@@ -14,6 +13,7 @@ import Journal from './components/Journal';
 import Survey from './components/Survey';
 import Profile from './components/Profile';
 import Todos from './components/Todos';
+
 import Quote from './components/Quote';
 import QuotePage from './components/QuotePage';
 
