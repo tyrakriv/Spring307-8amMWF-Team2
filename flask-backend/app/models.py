@@ -41,16 +41,13 @@ class User(UserMixin, db.Model):
         #db.session.commit()
 
     def get_user_json(self):
-        UTC_datetime = self.date_created
-        UTC_datetime_timestamp = float(UTC_datetime.strftime("%s"))
-        local_date_time = datetime.fromtimestamp(UTC_datetime_timestamp)
         return {
             "id" : self.id,
             "username" : self.username,
             "email" : self.email,
             "first_name" : self.first_name,
             "last_name" : self.last_name,
-            "date_created" : local_date_time,
+            "date_created" : self.date_created,
             "is_contributor" : self.is_contributor
         }
 
@@ -81,14 +78,11 @@ class Journal(db.Model):
         self.title = new_title
 
     def get_journal_json(self):
-        UTC_datetime = self.date_created
-        UTC_datetime_timestamp = float(UTC_datetime.strftime("%s"))
-        local_date_time = datetime.fromtimestamp(UTC_datetime_timestamp)
         return {
             'id' : self.id, 
             'title' : self.title, 
             'body' : self.body, 
-            'date_created' : local_date_time
+            'date_created' : self.date_created
         }
 
     def __repr__(self):
