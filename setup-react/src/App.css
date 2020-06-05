@@ -53,6 +53,20 @@
   padding: 0px;
 }
 
+.newjournal-btn{
+  /* position: absolute; */
+  margin-top: 80px;
+  margin-right: 10px;
+  margin-left: 300px;
+}
+
+.section-title{
+  position: absolute;
+  top: 80px;
+  left: 200px;
+  margin: 0px;
+}
+
 .profile-data{
   margin-top: 80px;
   margin-left: 200px;
@@ -61,11 +75,17 @@
 .journal-list{
   position: absolute;
   width: auto;
-  margin-left: 200px;
-  margin-top: 80px;
-  top: 0px;
-  left: 0px;
+  top: 80px;
+  left: 200px;
+  margin-top: 70px;
   margin-bottom: 50px;
+}
+
+.journal-entry{
+  width: auto;
+  max-width: 1000px;
+  height: auto;
+  margin-right: 50px;
 }
 
 .journal-form{
@@ -102,16 +122,6 @@ body{
 a{
   color: #430;
 }
-
-/*h1{
-  position: absolute;
-  left: 10px;
-}
-
-h2{
-  position: absolute;
-  left: 100px;
-}*/
 
 nav {
   position: absolute;

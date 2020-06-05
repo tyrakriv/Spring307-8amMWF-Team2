@@ -3,9 +3,7 @@ import Tabs from './Tabs';
 import QuotePage from './QuotePage';
 import {Button, Form, FormGroup, Label, Input} from 'reactstrap';
 import { useHistory, Redirect } from 'react-router-dom';
-//const check = true;
 
-//var oldQuote = "You Matter";
 export class Homepage extends Component {
   constructor(props) {
     super(props);
@@ -20,8 +18,6 @@ export class Homepage extends Component {
   }
 
   handleSubmit(event) {
-    //alert('A quote was submitted: ' + this.state.value);
-    //oldQuote = "";
     event.preventDefault();
   }
    addQuote(){
@@ -64,26 +60,3 @@ export class Homepage extends Component {
 
 }
 export default Homepage
-
-
-/*function Homepage() {
-    // state = {
-    //     quote: {
-    //         text: 'My dark days made me strong, or maybe I already was strong, and they made me prove it'
-    //     }
-    // }
-    return (
-        <div>
-            <Fragment>
-              <Tabs/>
-              <QuotePage/>
-                <h1 style={{
-                  top: 400
-                }}>Home page</h1>
-             </Fragment>
-        </div>
-    );
-}
-
-
-export default Homepage;*/

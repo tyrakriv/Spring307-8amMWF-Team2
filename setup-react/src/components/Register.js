@@ -8,11 +8,12 @@ export const Register = () => {
     const [username, setUsername] = useState('');
     const [first_name, setFirst_name] = useState('');
     const [last_name, setLast_name] = useState('');
+    const [empty_field, setError_204] = useState(false);
+    const [username_email_taken, setError_409] = useState(false);
     const {register, handleSubmit, errors} = useForm();
     const onSubmit = (data) => {
         console.log(data);
     };
-    // var ref = "/register";
     var localStorage = window.localStorage;
     const history = useHistory();
     if (JSON.parse(window.localStorage.getItem("user")) != null) {
@@ -34,12 +35,11 @@ export const Register = () => {
                 </h1>
                 <FormGroup>
                     <label>Email</label>
-                    <h2></h2>
                     <div className="field">
                     <input 
                         value={email} 
                         placeholder = "Email" 
-                        name = "Email"
+                        name = "email"
                         ref = {register({required: true})}
                         onChange={e => setEmail(e.target.value)}/>
                     </div>
@@ -48,13 +48,12 @@ export const Register = () => {
 
                 <FormGroup>
                     <label>Username</label>
-                    <h2></h2>
                     <div className="field">
                     <input
                         value={username} 
                         name = "username"
                         ref = {register({required: true})}
-                        placeholder = "Username" 
+                        placeholder = "username" 
                         onChange={e => setUsername(e.target.value)}/>
                     </div>
                     <div style={{fontSize: 11, color: "red"}}>{errors.username && <p>Required</p>}</div>
@@ -62,11 +61,10 @@ export const Register = () => {
 
                 <FormGroup>
                     <label>First Name</label>
-                    <h2></h2>
                     <div className="field">
                     <input
                         value={first_name} 
-                        placeholder = "First Name" 
+                        placeholder = "first name" 
                         name = "first_name"
                         ref = {register({required: true})}
                         onChange={e => setFirst_name(e.target.value)}/>
@@ -76,11 +74,10 @@ export const Register = () => {
 
                 <FormGroup>
                     <label>Last Name</label>
-                    <h2></h2>
                     <div className="field">
                     <input 
                         value={last_name} 
-                        placeholder = "Last Name" 
+                        placeholder = "last name" 
                         name = "last_name"
                         ref = {register({required: true})}
                         onChange={e => setLast_name(e.target.value)}/>
@@ -90,11 +87,10 @@ export const Register = () => {
             
                 <FormGroup>
                     <label>Password</label>
-                    <h2></h2>
                     <div className="field">
                     <input 
                         value={password} 
-                        placeholder = "Password"
+                        placeholder = "password"
                         name = "password"
                         ref = {register({required: true})}
                         onChange={e => setPassword(e.target.value)}/>
@@ -117,22 +113,22 @@ export const Register = () => {
                         if (response.status === 201) { 
                             response.json().then(data => {//store user in localStrage as token
                                 localStorage.setItem('user', JSON.stringify(data.user));
-                                console.log("Successful Registration");
-                                console.log(JSON.parse(window.localStorage.getItem("user")));
-                                const ref = "/homepage";
-                                history.push(ref);
+                                history.push("/homepage");
                             })
                             /* redirect to the home page or login page here */
                         }   
                         else if (response.status === 409) { /* successful creation of account */
-                            return(<div style={{fontSize: 11, color: "red"}}>{<p>Username or Email Taken</p>}</div>);
+                            setError_409(true);
+                            setError_204(false);
                             /* body is either "Email already linked 
                             to an account" or "Username Taken" */
                             
                         }
                         else if (response.status === 204){
-                            return(<div style={{fontSize: 11, color: "red"}}>{<p>All Fields Required</p>}</div>);
+                            setError_409(false);
+                            setError_204(true);
                         }
+            
                      })
                      .catch(error => console.log(error))
 
@@ -141,8 +137,13 @@ export const Register = () => {
                     type = "submit">
 
                     Submit
-                    </Button>
+                </Button>
+                { username_email_taken && 
+                    <h3 style={{fontSize: 18, color: "red"}}>Username or Email Taken</h3>}
+                { empty_field && 
+                    <h3 style={{fontSize: 18, color: "red"}}>All Fields Must Be Filled</h3>}
             </Form>
+            
         </div>);
 
 }

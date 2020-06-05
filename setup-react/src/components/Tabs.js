@@ -1,6 +1,5 @@
 import React from 'react';
 import {Button, Form, Label} from 'reactstrap';
-//const check = JSON.parse(window.localStorage.getItem("user")).is_contributor;
 
 function Tabs() {
 
