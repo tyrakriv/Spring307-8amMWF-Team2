@@ -5,9 +5,7 @@ import { TextArea } from 'semantic-ui-react';
 import {useForm} from 'react-hook-form';
 
 export const JournalForm = () => {
-    
     const {register, handleSubmit, errors} = useForm();
-
      const onSubmit = data => {
         console.log(data);
     };

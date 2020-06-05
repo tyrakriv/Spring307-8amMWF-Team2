@@ -11,7 +11,7 @@ const Result = ({score, playAgain}) => (
     ) : null}
     
     <h2 style={{
-      marginTop: 375,
+      marginTop: 50,
     }}>Come back tomorrow!</h2>
   </div>
 );

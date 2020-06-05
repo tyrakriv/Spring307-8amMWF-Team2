@@ -19,47 +19,50 @@ const removeEntry = async (entry_title) => {
     .then(response => {
         if (response.ok) {
             window.location.reload(false);
-            console.log("Successfully Removed");
         }
     })
     .catch(error => console.log("Error in removing Journal Entry: ", error))
-    // this.setState({
-    //     entries: entries.filter ((entry, i) => {
-    //         return i != index
-    //     })
-    // })
+}
+
+const Entry = ({entry}) => {
+    return (
+        <div className="journal-entry">
+            <h1>{entry.title}</h1>
+            <h3>{entry.date_created}</h3>
+            <p>{entry.body}</p>
+            <div>    
+                <Link styel={{right : 150}} to={
+                    {
+                        pathname: '/journal/entry',
+                        state: {
+                            title: entry.title, 
+                            body: entry.body,
+                            entry_id: entry.id,
+                            user_id: JSON.parse(window.localStorage.getItem("user")).id
+                        }
+                    }
+                    }><Button className="btn-dark text-right"> edit </Button>
+                </Link>
+                <Button onClick={() => removeEntry(entry.title)} className="btn-dark text-right">
+                    delete 
+                </Button>
+            </div>
+            <hr style={{color: '#000000',
+                        backgroundColor: '#000000',
+                        height:0.9}}/>
+        </div>
+    )
 }
 
 const Entries = ({ entries }) => {
-    console.log(entries);
     const sorted_entries = entries.sort(function(a, b){
         return new Date(b.date_created) - new Date(a.date_created);
     });
-    console.log(sorted_entries);
     return (
         <List>
-            {sorted_entries.map(entry => {
-                return (
-                    <List.Item key={entry.title}>
-                        <Header>{entry.title} </Header>
-                        <h3> {entry.body} </h3>
-                        <h2> {entry.date_created} </h2>
-                        <Link styel={{right : 150}} to={
-                            {
-                                pathname: '/journal/entry',
-                                state: {
-                                    title: entry.title, 
-                                    body: entry.body,
-                                    entry_id: entry.id,
-                                    user_id: JSON.parse(window.localStorage.getItem("user")).id
-                                }
-                            }
-                            }><Button className="btn-dark text-right"> edit </Button>
-                        </Link>
-                        <Button onClick={() => removeEntry(entry.title)} className="btn-dark text-right"> delete </Button>
-                    </List.Item>
-                )
-            })}
+            {sorted_entries.map(entry => 
+                <Entry entry={entry}/>
+            )}
         </List>
     ) 
 }
@@ -87,8 +90,10 @@ function Journal() {
     return (
         <div>
             <Tabs/>
-            <div className="journal-list">
-                <h1>Journals: </h1>
+            <div>
+                <div className="section-title">
+                    <h1>Journals: </h1>
+                </div>
                 <Link styel={{right : 150}} to={
                     {
                         pathname: '/journal/entry',
@@ -99,9 +104,12 @@ function Journal() {
                             user_id: JSON.parse(window.localStorage.getItem("user")).id
                         }
                     }
-                }><Button > New Journal </Button>
+                }><Button className="newjournal-btn"> New Journal </Button>
                 </Link>
-                <Entries entries={entries}/>
+                <div className="journal-list">
+                    <Entries  entries={entries}/>
+                </div>
+                    
             </div>
             
         </div>

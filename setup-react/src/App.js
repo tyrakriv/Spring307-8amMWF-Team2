@@ -8,7 +8,6 @@ import {Container} from "semantic-ui-react";
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Homepage from './components/Homepage';
 import Tabs from './components/Tabs';
-//import Header from './components/Header';
 import Journal from './components/Journal';
 import Survey from './components/Survey';
 import Profile from './components/Profile';

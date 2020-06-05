@@ -19,7 +19,6 @@ class Quote extends Component {
     }
   
     handleSubmit(event) {
-      //alert('A quote was submitted: ' + this.state.value);
       event.preventDefault();
     }
   
