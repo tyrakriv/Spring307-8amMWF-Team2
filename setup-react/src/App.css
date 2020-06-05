@@ -25,7 +25,14 @@
   color: #282828;
   outline: none;
   -webkit-appearance: none;
-} 
+}
+
+.headers{
+  position: absolute;
+  left: 100px;
+  padding: 0px;
+}
+
 .tabs{
   width: 150%;
   max-width: 90px;
@@ -68,15 +75,15 @@ a{
   color: #430;
 }
 
-h1{
+/*h1{
   position: absolute;
-  left: 100px;
+  left: 10px;
 }
 
 h2{
   position: absolute;
   left: 100px;
-}
+}*/
 
 nav {
   position: absolute;

@@ -13,8 +13,9 @@ import Journal from './components/Journal';
 import Survey from './components/Survey';
 import Profile from './components/Profile';
 import Todos from './components/Todos';
-//import Quote from './components/Quote';
-//import QuotePage from './components/QuotePage';
+
+import Quote from './components/Quote';
+import QuotePage from './components/QuotePage';
 
 function App(){
     return (

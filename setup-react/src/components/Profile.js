@@ -1,5 +1,6 @@
 import React from 'react'
 import Tabs from './Tabs';
+import Todos from './Todos';
 
 function Profile() {
     return (

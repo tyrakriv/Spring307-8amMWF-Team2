@@ -2,13 +2,16 @@ import React, { Component, useState } from "react";
 import {Button, Form, FormGroup, Label, Input} from 'reactstrap';
 import {useHistory} from 'react-router-dom';
 import {useForm} from 'react-hook-form';
+
+
+
 export const Login = () => {
     const [email_or_username, setName] = useState('');
     const [password, setPassword] = useState('');
    //const [emailError, setEmailError] = useState('Email Required');
    //<div style={{fontSize:  12, color: "red"}}>{emailError}</div>
     const [is_contributor, setContributor] = useState(false);
-    // var ref = "/";
+    var ref = "/";
     const history = useHistory();
     const {register, handleSubmit, errors} = useForm();
     const onSubmit = data => {
@@ -58,10 +61,21 @@ export const Login = () => {
                     </div>  
                     <div style={{fontSize: 11, color: "red"}}>{errors.Password && <p>Required</p>}</div>          
                 </FormGroup>
+
+                <FormGroup>
+                    <div className="text-center">
+                    <Input
+                        type="checkbox"
+                        value={is_contributor}
+                        onChange={e => setContributor(e.target.checked)}/>
+                        Contributor
+                    </div>
+                </FormGroup>
                 
                 <Button onClick={async () =>{
                     //handleSubmit();
                      const login = {email_or_username, password, is_contributor};
+                     console.log(JSON.stringify(login));
                      const response = await fetch('http://127.0.0.1:5000/api/login', {
                          method: 'POST',
                          headers:{
@@ -69,12 +83,11 @@ export const Login = () => {
                          },
                          body: JSON.stringify(login)
                      })
-                     .then(response => {                  
-                         console.log(response.status);       
+                     .then(response => {
+                         console.log(response.status);
                          if (response.status === 201) {
                             response.json().then(data => { // store user in localStorage as token
                                 window.localStorage.setItem("user", JSON.stringify(data.user));
-                                //console.log(JSON.parse(window.localStorage.getItem("user"))); // prints correctly here
                                 console.log("Successful Login"); 
                                 const ref="/homepage";
                                 history.push(ref);
@@ -91,17 +104,14 @@ export const Login = () => {
                      .catch(error => console.log(error))
                     
                     }}
-                    //href = "/"
                     className="btn-lg btn-dark btn-block"
                     type = "submit" className="btn-lg btn-dark btn-block">
                     {/* COMMENT HREF OUT  
                     href={ref = "/homepage"} */}
-                    
                     Log in</Button>
             </Form>
         </div>
     );
-    
 }
 
 

@@ -1,14 +1,64 @@
 import React, { Component, Fragment } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-//import Quoteitem from './Quoteitem';
-import {Button, Form, Label} from 'reactstrap';
 import Tabs from './Tabs';
-import Profile from './Profile';
-import Journal from './Journal';
-import Survey from './Survey';
+import QuotePage from './QuotePage';
+import {Button, Form, FormGroup, Label, Input} from 'reactstrap';
+//const check = true;
+
+//var oldQuote = "You Matter";
+export class Homepage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {value: ''};
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({value: event.target.value});
+  }
+
+  handleSubmit(event) {
+    //alert('A quote was submitted: ' + this.state.value);
+    //oldQuote = "";
+    event.preventDefault();
+  }
+   addQuote(){
+      const check = JSON.parse(window.localStorage.getItem("user")).is_contributor;
+        if(check)
+        {
+        return(
+          <div>
+              <form onSubmit={this.handleSubmit}>
+                  <label>
+                    Enter Quote:
+                    <input type="text" value={this.state.value} onChange={this.handleChange} />
+                  </label>
+                <input type="submit" value="Submit"/>
+              </form> 
+              <QuotePage quote={this.state.value}/>
+          </div>
+          )
+        }
+    }
+
+    render() {
+        return (
+          
+            <div> 
+              <Tabs/>
+            {this.addQuote()}
+            <h1>"You Matter"</h1>
+            <h1>Homepage</h1>
+            </div>
+        )
+    }
+
+}
+export default Homepage
 
 
-function Homepage() {
+/*function Homepage() {
     // state = {
     //     quote: {
     //         text: 'My dark days made me strong, or maybe I already was strong, and they made me prove it'
@@ -17,24 +67,15 @@ function Homepage() {
     return (
         <div>
             <Fragment>
+              <Tabs/>
+              <QuotePage/>
                 <h1 style={{
                   top: 400
                 }}>Home page</h1>
-                <Tabs/>
              </Fragment>
         </div>
-       /* <Fragment>
-        <BrowserRouter>
-          <Tabs />
-          <Switch>
-            <Route path="/profile" component={Profile}/>
-            <Route path="/journal" component={Journal}/>
-            <Route path="/survey" component={Survey}/>
-          </Switch>
-        </BrowserRouter>
-      </Fragment>*/
     );
 }
 
 
-export default Homepage;
+export default Homepage;*/
